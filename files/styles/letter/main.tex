@@ -1,0 +1,31 @@
+\documentclass[11pt,a4paper,czech]{article}
+\input{files/styles/header.tex}
+\input{files/styles/$styl$/template.tex}
+
+$if(vyrizuje.ds)$ \def \myds {$vyrizuje.ds$} $endif$
+$if(vyrizuje.telefon)$ \def \myphone {$vyrizuje.telefon$} $endif$
+$if(vyrizuje.mail)$ \def \mymail {$vyrizuje.mail$} $endif$
+
+\begin{document}
+
+\recipient[$prijemce.role$]{$prijemce.nazev$ \\ $if(prijemce.dovetek)$ $prijemce.dovetek$ \\$endif$ $prijemce.ulice$ \\
+$prijemce.PSC$ \quad $prijemce.mesto$
+$if(prijemce.DS)$
+
+\bigskip
+\DS{$prijemce.DS$}$endif$}
+
+\def \yoursign {$vase.znacka$}
+\def \yourdate {$vase.den$}
+\def \oursign {$nase.znacka$}
+\def \place {$nase.misto$}
+
+\printheader
+
+\subject{$vec$}
+
+$body$
+
+\signature{$for(podpis)$$podpis$ \\$endfor$}
+
+\end{document}
