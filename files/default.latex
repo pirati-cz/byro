@@ -1,5 +1,30 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+% customized code
+\documentclass[$if(fontsize)$$fontsize$,$else$11pt,$endif$$if(lang)$$lang$,$else$czech,$endif$$if(papersize)$$papersize$,$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 $if(fontfamily)$
+
+$if(author.ds)$ \def \myds {$author.ds$} $endif$
+$if(author.phone)$ \def \myphone {$author.phone$} $endif$
+$if(author.mail)$ \def \mymail {$author.mail$} $endif$
+$if(our.sign)$ \def \oursign {$our.sign$} $endif$
+$if(your.sign)$ \def \yoursign {$your.sign$} $endif$
+\def \yourdate {$if(your.date)$$your.date$ $else$\today$endif$}
+\def \place {$if(our.place)$ $our.place$$else$ Praha $endif$}
+
+\renewcommand{\maketitle}{
+
+\recipient[$your.role$]{$for(your.name)$$your.name$ \\$endfor$, $for(your.address)$$your.address$ \\$endfor$
+$if(prijemce.ds)$
+
+\bigskip
+\DS{$prijemce.ds$}$endif$}
+
+\printheader
+\subject{$vec$}
+}
+\AtEndDocument{\signature{$for(podpis)$$podpis$ \\$endfor$}}
+
+% end of customized code
+
 \usepackage{$fontfamily$}
 $else$
 \usepackage{lmodern}
@@ -160,6 +185,11 @@ $endfor$
 \let\oldsubparagraph\subparagraph
 \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
+
+% customized code
+\input{files/styles/common/header.tex}
+\input{files/styles/letter/template.tex}
+% end of customized code
 
 \begin{document}
 $if(title)$

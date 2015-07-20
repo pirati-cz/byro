@@ -1,5 +1,3 @@
-\usepackage[margin=2.5cm,footskip=1cm,bottom=4cm,top=4cm]{geometry}
-
 % nastavení fontů
 \setmainfont[
     Path = files/fonts/LiberationSans/,
@@ -7,7 +5,8 @@
     UprightFont = *-Regular,
     BoldFont=*-Bold.ttf,
     ItalicFont=*-Italic.ttf,
-    BoldItalicFont=*-BoldItalic]{LiberationSans}
+    BoldItalicFont=*-BoldItalic,
+    Scale=1.0]{LiberationSans}
 \setmonofont[
     Path = files/fonts/LiberationSans/,
     Ligatures=TeX,
@@ -15,9 +14,6 @@
     BoldFont=*-Bold.ttf,
     ItalicFont=*-Italic.ttf,
     BoldItalicFont=*-BoldItalic]{LiberationSans}
-\def \myds {b2i4r6j}
-\def \myphone {+420\,775\,978\,550}
-\def \mymail {info@pirati.cz}
 
 % Pozadí stránky
 \usepackage{wallpaper}
@@ -42,47 +38,6 @@ Transparentní účet 2100048174/2010}% Your logo/image
 \AtBeginDocument
 {
    \thispagestyle{mypagestyle}
-   \ThisULCornerWallPaper{1}{files/styles/pirati/pozadi.pdf}
+   \ThisULCornerWallPaper{1}{files/styles/letter/pozadi.pdf}
 }
 
-% Titulek
-
-\renewcommand{\title}[1]{
-\vspace*{0.3cm}
-\begin{center}
-{\LARGE #1}
-\end{center}
-\hypersetup{
-    pdftitle={#1},
-    pdfauthor={Česká pirátská strana},
-    hidelinks=true,
-    pdfborder={0 0 0}
-}
-}
-
-% Číslování nadpisů
-
-\def\arabicsections{
-\titleformat{\section}
-{\normalsize\bfseries\center}
-{Čl.\,\thesection}{1ex}{}
-\renewcommand{\thesection}{\arabic{section}}}
-
-\def\Romansections{
-\titleformat{\section}
-{\normalsize\bfseries\center}
-{\thesection}{1ex}{}
-\renewcommand{\thesection}{\Roman{section}.}
-
-\titleformat{\subsection}
-{\normalsize\center\emph}
-{\thesubsection}{1ex}{}
-\renewcommand{\thesubsection}{\Roman{section}.\alph{subsection})}
-}
-
-
-\titlespacing{\section}{0em}{2em}{0.5em}
-
-%%%%%%%%%%% DEFINOVÁNÍ STYLŮ %%%%%%%%%%%%%%%%%
-\usepackage{enumerate}
-\renewcommand{\labelitemi}{$-$}
