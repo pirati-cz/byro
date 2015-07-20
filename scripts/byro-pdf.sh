@@ -159,7 +159,7 @@ locatePandoc;
 
 if [ -z "$template" ]; then
   prepareSymlink;
-  template="files/forms/dopis/main.tex";
+  template="files/default.latex";
 fi;
 
 md2pdfMulti "$@";

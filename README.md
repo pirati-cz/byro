@@ -1,22 +1,27 @@
 ---
-title:    Spisová služba
-authors:
-  -       Jakub Michálek
-  -       Ondřej Profant
-license:
-          Affero GNU-GPL
+title:    Byro – pomocník na byrokracii
+authors:  [Jakub Michálek, Ondřej Profant]
+license:  Affero GNU-GPL
 ---
 
 
-Spisová služba
+Byro – pomocník na byrokracii
 ============================
 
-Tento program umožňuje vytvářet malé a typograficky propracované dokumenty pomocí sázacího systému XeTeX. Uživatel může vytvářet vlastní šablony se vzhledem, který mu vyhovuje. Vychází přitom ze
+Program `byro` je soubor utilit, které umožňují z příkazové řádky:
+
+* sázet dobře upravené dokumenty,
+* podepisovat dokumenty elektronickým podpisem,
+* aktualizovat data v redmine,
+* posílat dokumenty e-mailem nebo datovou schránkou,
+* generovat výkazy z redmine. 
+
+Program vytvořil klub Pirátů v zastupitelstvu hl. m. Prahy.
 
 Zadání
 -------
 
-Program se používá podobně jako `git` zadáním hlavního příkazu `fom` a některého z následujících doprovodných příkazů. Požadavek je, aby se instaloval a aktualizoval jednoduchým způsobem jedním příkazem.
+Program se používá podobně jako `git` zadáním hlavního příkazu `byro` a některého z následujících doprovodných příkazů. Požadavek je, aby se instaloval a aktualizoval jednoduchým způsobem jedním příkazem.
 
 Klasická pracovní metoda: 
 
@@ -25,7 +30,7 @@ Klasická pracovní metoda:
 * spustím příkaz `full`, který obstará celý proces včetně odeslání do datové schránky a uložení poznámky do redmine.
 
 
-Podpříkazy
+Doprovodné příkazy
 --------
 
 ## pdf [sablona]
@@ -52,7 +57,7 @@ Odešle dokument `main_signed.pdf` a jeho přílohy uložené v adresáři `atta
 
 ## full
 
-Aplikuje příkazy `prep`, `sign`, `commit` a podle informací v hlavičce souboru odešle datovou schránkou `ds` nebo e-mailem `mail`. 
+Aplikuje příkazy `pdf`, `sign`, `save` a podle informací v hlavičce souboru odešle datovou schránkou `ds` nebo e-mailem `mail`. 
 
 
 ## vycetka

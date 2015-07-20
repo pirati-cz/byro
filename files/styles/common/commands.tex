@@ -1,0 +1,135 @@
+% this file contains the abbreviations and definitions of commands that can be used by all templates
+
+\newcommand{\authorized}[1]{\bigskip{}
+
+právně zast.: 
+
+\medskip{}
+
+#1}
+
+\newcommand{\polozka}[2]{
+\begin{minipage}[t]{0.3\columnwidth}%
+\textbf{#1}:
+\end{minipage}
+\begin{minipage}[t]{0.7\columnwidth}%
+#2
+
+\medskip{}
+
+\end{minipage}
+}
+
+\newcommand{\signatureline}[1]{
+\hfill{}
+\begin{minipage}[t]{0.3\columnwidth}%
+\vspace{0.7cm}
+\dotfill{}
+\begin{center}
+#1
+\end{center}
+\end{minipage}
+\hfill{}
+}
+
+\newcommand{\subject}[1]{
+\vspace{1.5em}
+\textbf{#1}
+\vspace{1.5em}
+}
+
+
+\newcommand{\signature}[1]{
+
+\vspace{1em}%
+\recipient[]{#1}
+}
+
+% Definice textů hlavičky
+\def\yoursignlabel{\small Odpověď na Váš dopis}
+\def\yourdatelabel{\small ze dne}
+\def\oursignlabel{\small Naše značka}
+\def\attachmentlabel{\textbf{Přílohy}}
+
+\newcommand{\from}[2][]{
+\begin{minipage}[t][3cm][t]{0.5\linewidth}% 
+\ifthenelse{\equal{#1}{}}{}{\textbf{#1}: \\}%
+#2%
+\end{minipage}}
+
+\newcommand{\recipient}[2][]{
+\hspace{0.6\linewidth}%
+\begin{minipage}[t][3cm][t]{0.4\linewidth}% 
+\ifthenelse{\equal{#1}{}}{}{\textbf{#1}: \\}%
+#2%
+\end{minipage}
+
+\bigskip
+}
+
+
+\newcommand{\udaj}[3]{%
+\begin{minipage}[t]{#3\linewidth}%
+#1 \\ 
+\normalsize\rmfamily #2%
+\end{minipage}}
+
+\newcommand{\reasons}{%
+\begin{center}
+\vspace{1em}%
+Odůvodnění:
+\vspace{1em}%
+\end{center}}
+
+\usepackage{datetime}
+\newdateformat{csdatum}{\THEDAY. \THEMONTH. \THEYEAR} %správný formát data
+
+\newcommand{\printheader}{\udaj{\yoursignlabel}{\yoursign}{0.40}%
+\udaj{\yourdatelabel}{\yourdate}{0.20}%
+\udaj{\oursignlabel}{\oursign}{0.20}%
+\udaj{\place}{\csdatum\today}{0.20}}
+
+
+\newcommand{\attachments}[1]{%
+\attachmentlabel 
+
+\par #1}
+
+% formuláře
+
+\newcommand\NiceField[2][]{%
+\raisebox{-2pt}{\TextField[#1,borderwidth=0pt,bordercolor=0.99 0.99 0.99]{\raisebox{2pt}{#2 }}}%
+}
+
+\newlength\TextFieldLength
+\newcommand\NiceFieldFill[2][]{% definice formuláře, který se automaticky roztahuje
+  \setlength\TextFieldLength{\linewidth}%
+  \settowidth{\dimen0}{#2 }%
+  \addtolength\TextFieldLength{-\dimen0}%
+  \addtolength\TextFieldLength{-3.0pt}%
+  \NiceField[#1,width=\TextFieldLength]{#2}%
+}
+
+\newcommand{\DS}[1]{
+do datové schránky \uline{#1}
+}
+
+\newcommand{\adresa}[5]{%
+#1 \\ #2 \\
+#3 \quad #4
+\ifthenelse{\equal{#5}{}}{}{
+
+\bigskip
+\DS{#5}}}%
+
+\makeatletter
+
+\def\jmenovka#1#2#3#4#5#6#7{%
+   \expandafter\def\csname #1\endcsname##1{%
+   \ifthenelse{\equal{##1}{short}}{#3}{}%
+   \ifthenelse{\equal{##1}{full}}{\adresa{#3}{#4}{#5}{#6}{#7}}{}%
+   \ifthenelse{\equal{##1}{role}}{#2}{}}%   
+}
+
+\makeatother
+
