@@ -87,9 +87,9 @@ id:
 
 ## Povolené hodnoty
 
-year: this, last, 2014, 2015, ... 
-month: this, last, leden, únor, ..., prosinec, 1, ..., 12
-user: id, nebo nickname
+year: this, last, 2014, 2015, ...  
+month: this, last, leden, únor, ..., prosinec, 1, ..., 12  
+user: id, nebo nickname  
 
 
 
@@ -102,4 +102,21 @@ Používání
 
 Struktura adresáře
 ------------------
+
+Testing
+-------
+
+```
+python3 -m unittest discover
+```
+
+Použité knihovny
+----------------
+
+Python:
+
+* [ConfigArgParse](https://pypi.python.org/pypi/ConfigArgParse)
+* [Python redmine](https://github.com/maxtepkeev/python-redmine)
+* [Python docx (part of python-openxml)](https://github.com/python-openxml/python-docx)
+
 

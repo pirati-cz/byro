@@ -6,6 +6,7 @@ import configargparse
 from byro.bredmine import BRedmine
 from byro.vycetka import (Cmd, DocX)
 from byro.sign import PdfSign
+from byro.pandoc import Pandoc
 
 
 class App:
@@ -37,7 +38,11 @@ class App:
         p.add('-l', '--locale',   help="")
         p.add('-g', '--gui', type=bool, help="")
         p.add('-k', '--sign-key', help="")
-        p.add('--sign-bin', help="" )
+        p.add(	    '--sign-bin', help="" )
+        p.add('-V', '--sign-visible', type=bool, help="")
+        p.add(	    '--sign-reason', help="" )
+        p.add(	    '--sign-location', help="" )
+        p.add(	    '--sign-contact', help="" )
         p.add(      '--pandoc-bin', help="")
         p.add(      '--tex-bin', help="")
         p.add(      '--ds-id', help="")
@@ -48,6 +53,10 @@ class App:
     def _before_run(self):
         locale.setlocale(locale.LC_ALL, self.args.locale)
 
+    def pdf(self):
+        pandoc = Pandoc(self.args.pandoc_bin)
+        #pandoc.convert("README.md")
+
     def vycetka(self):
         redmine = BRedmine(self.args.user, self.args.url, self.args.project, self.args.month)
         data = redmine.get_data()
@@ -56,6 +65,8 @@ class App:
         docx.show()
 
     def sign(self):
+        pass
+        sign = PdfSign(self.args)
         raise NotImplemented
 
     def main(self):
@@ -67,7 +78,7 @@ class App:
         c = self.args.command
 
         if c == "pdf":
-            raise NotImplemented
+            self.pdf()
         elif c == "sign":
             self.sign()
         elif c == "vycetka":
