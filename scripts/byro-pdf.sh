@@ -6,7 +6,7 @@
 # - Ondřej Profant
 
 # Global variables
-packages="texlive texlive-wallpaper texlive-smartref texlive-smartref"
+packages="texlive texlive-wallpaper texlive-smartref texlive-fonts-recommended texlive-latex-extra"
 pandocExe="";
 template="";
 DIR="";
@@ -47,7 +47,7 @@ function checkTeX() {
 function locatePandoc() {
   if [ -n "$pandocExe" ]; then
     :
-  elif "$HOME/.cabal/bin/pandoc" -v > /dev/null; then
+  elif "$HOME/.cabal/bin/pandoc" -v 2&> /dev/null; then
     pandocExe="$HOME/.cabal/bin/pandoc";
   elif pandoc -v > /dev/null; then
     pandocExe="pandoc";
@@ -94,13 +94,16 @@ function cleanUpSymlink() {
 # via pandoc
 ##############################
 function md2pdf() {
+
   # we extract the form from the yaml front matter
-  form="files/forms/"$(awk -F ":[ ]+" '/sablona/ {print $2}' < "$1")"/main.tex";
+  form="files/styles/"$(awk -F ":[ ]+" '/style/ {print $2}' < "$1")"/main.tex";
+
   if [ -s "$form" ]; then
     template=$form;
   fi;
+  
   $pandocExe \
-    --template=${template} \
+    --template="${template}" \
     --latex-engine=xelatex \
     -o "$2" \
     "$1";
@@ -114,11 +117,11 @@ function md2pdfMulti() {
     md2pdf main.md main.pdf
   elif [ "$#" -gt 1 ]; then
     for i in "$@"; do
-	echo "Zpracovávám $i";
-	md2pdf "${i}" "${i%md}pdf";
+	    echo "Zpracovávám $i";
+	    md2pdf "${i}" "${i%md}pdf";
     done;
   else
-    md2pdf "${i}" "${i%md}pdf"
+    md2pdf "${1}" "${1%md}pdf"
   fi;
 }
 
@@ -159,9 +162,11 @@ locatePandoc;
 
 if [ -z "$template" ]; then
   prepareSymlink;
-  template="files/default.latex";
+  template="files/styles/letter/main.tex";
 fi;
+
+
 
 md2pdfMulti "$@";
 
-cleanUpSymlink;
+# cleanUpSymlink;

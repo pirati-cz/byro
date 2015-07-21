@@ -3,12 +3,11 @@ title:      Podnět zastupitele hl. m. Prahy k vyvěšení duhové vlajky
 author:
    name:    Jakub Michálek
    phone:   +420 775 978 550
-   ds       4memzkm
+   ds:      4memzkm
    mail:    jakub.michalek@praha.eu
 our:
    name:    Zastupitelský klub Pirátů
    sign:    ZK Pha 93/2015
-   date:    
 your:
    role:    Povinný subjekt
    name:
@@ -19,9 +18,9 @@ your:
       -     110 01 Praha 1
    ds:      48ia97h
    sign:
-   date:
+   date:    20. 5. 2012
 sendby:     ds
-style:      pirati
+style:      letter
 ---
 
 Vážená paní primátorko,
@@ -59,4 +58,5 @@ signature:
   - Mgr. Bc. Jakub Michálek
   - předseda klubu Pirátů
   - zastupitelstvo hl. m. Prahy
+abbr:       jakub
 ...
