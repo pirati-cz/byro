@@ -4,6 +4,7 @@
 # geometry:               margin=2cm
 # lang:                   cs
 # mainlang:               czech
+import os
 import sys
 import subprocess
 from byro.utils import Utils
@@ -17,9 +18,10 @@ class Pandoc:
 
     def check_dependency(self):
         command = [self.bin, "-v"]
+        FNULL = open(os.devnull, 'w')
 
         try:
-            subprocess.check_call(command)
+            subprocess.check_call(command, stdout=FNULL)
         except subprocess.CalledProcessError:
             print("Cesta k pandoc není správná. Cesta: %s" % command, file=sys.stderr)
             exit()
@@ -36,3 +38,5 @@ class Pandoc:
                    "-o", output, input]
 
         subprocess.call(command)
+
+        print("%s byl konvertován v %s" % (input, output))

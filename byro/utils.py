@@ -7,6 +7,16 @@ from dateutil.relativedelta import relativedelta
 class Utils:
 
     @staticmethod
+    def is_int(x):
+        if isinstance(x, int):
+            return True
+        try:
+            int(x)
+            return True
+        except ValueError:
+            return False
+
+    @staticmethod
     def define_interval(month='last', year=2015):
         """
         :param month:
@@ -19,8 +29,8 @@ class Utils:
             delta = relativedelta(months=-1)
             monthNum = datetime.date.today().month - 1
             # todo year break
-        elif isinstance(month, int):
-            monthNum = month
+        elif Utils.is_int(month):
+            monthNum = int(month)
         else:
             dt = Utils.month_and_year_to_datetime(month, year)
             monthNum = dt.month

@@ -2,11 +2,11 @@
 # -*- encoding: utf-8 -*-
 
 import locale
-import configargparse
 from byro.bredmine import BRedmine
 from byro.vycetka import (Cmd, DocX)
 from byro.sign import PdfSign
 from byro.pandoc import Pandoc
+from byro.configargparse import ByroParse
 
 
 class App:
@@ -16,17 +16,13 @@ class App:
         self.args = None
 
     def _parse_args(self):
-        p = configargparse.ArgParser(
-            default_config_files=['files/config.ini'],
-            usage="Skript pro generování výčetky."
+
+        subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "args"]
+
+        p = ByroParse(
+            subcommands,
+            default_config_files=['files/config.ini']
         )
-        subparsers = p.add_subparsers(dest="command", help='')
-        subparsers.add_parser('pdf', help='Convert markdown to pdf')
-        subparsers.add_parser('sign', help='Digital sign pdf')
-        subparsers.add_parser('vycetka', help='Generování výčetky.')
-        subparsers.add_parser('save', help='Save into github')
-        subparsers.add_parser('mail', help='')
-        subparsers.add_parser('ds', help='')
 
         p.add('-c', '--config', is_config_file=True,  help='config file path')
         p.add(      '--url',      help="Target Redmine url.")
@@ -34,6 +30,7 @@ class App:
         p.add('-y', '--year',     help="")
         p.add('-m', '--month',    help="")
         p.add('-u', '--user',     help="Redmine user nickname or id")
+        p.add('-i', '--input',    help="Input file name")
         p.add('-o', '--out',      help="Output file name")
         p.add('-l', '--locale',   help="")
         p.add('-g', '--gui', type=bool, help="")
@@ -55,7 +52,8 @@ class App:
 
     def pdf(self):
         pandoc = Pandoc(self.args.pandoc_bin)
-        #pandoc.convert("README.md")
+        #TODO: gives real filename
+        pandoc.convert("README.md")
 
     def vycetka(self):
         redmine = BRedmine(self.args.user, self.args.url, self.args.project, self.args.month)
@@ -67,7 +65,10 @@ class App:
     def sign(self):
         pass
         sign = PdfSign(self.args)
-        raise NotImplemented
+        sign.sign(self.args.input)
+
+    def args_test(self):
+        print(self.args)
 
     def main(self):
 
@@ -77,7 +78,9 @@ class App:
 
         c = self.args.command
 
-        if c == "pdf":
+        if c == 'args':
+            self.args_test()
+        elif c == "pdf":
             self.pdf()
         elif c == "sign":
             self.sign()

@@ -39,9 +39,12 @@ class Cmd(Output):
 class DocX(Output):
     """ Exports RedmineData into docx files """
 
-    def __init__(self, data, filename='vycetka.docx'):
+    def __init__(self, data, filename=None):
         Output.__init__(self, data)
-        self.filename = filename
+        if filename is None:
+            self.filename = "vycetka-" + data.month + "-" + data.user.lastname + ".docx"
+        else:
+            self.filename = filename
 
     def show(self):
         self._createDoc()
@@ -77,6 +80,8 @@ class DocX(Output):
 
         document.save(self.filename)
 
+        print("Výčetka vygenerována do souboru %s" % self.filename)
+
     def _createTable(self, document):
         """
         :param document: document main class
@@ -88,7 +93,6 @@ class DocX(Output):
             firstRow = None
             table = document.add_table(0,6)
             for event in self.data.refunds[refund]['data']:
-                print(event)
                 r = table.add_row()
                 if firstRow is None:
                     r.cells[0].text = self.data.refunds[refund]['fullname']

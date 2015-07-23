@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
-
+import os
 import sys
 import wget
 import shutil
 import os.path
 import zipfile
+import getpass
 import subprocess
 
 
 class PdfSign:
 
     def __init__(self, args):
-        self.bin = args.sign_bin
+        self.bin = ["java", "-jar", args.sign_bin]
         self.key = args.sign_key
         self.reason = args.sign_reason
+        self.check_dependency()
 
     def download_dependency(self):
         url = "http://sourceforge.net/projects/jsignpdf/files/latest/download?source=files"
@@ -39,7 +41,7 @@ class PdfSign:
             shutil.rmtree(wdir, ignore_errors=True)
 
     def check_dependency(self):
-        command = [self.jsign_path, "-v"]
+        command = self.bin + ["-v"]
 
         try:
             subprocess.check_call(command)
@@ -47,8 +49,8 @@ class PdfSign:
             print("Cesta k JsignPdf není správná. Cesta: %s" % command, file=sys.stderr)
             exit()
 
-        if not os.path.isfile(self.key_path):
-            print("Cesta k podpisovému klíči není správná. Cesta: %s" % self.key_path, file=sys.stderr)
+        if not os.path.isfile(self.key):
+            print("Cesta k podpisovému klíči není správná. Cesta: %s" % self.key, file=sys.stderr)
             exit()
 
     def sign(self, filename):
@@ -56,6 +58,13 @@ class PdfSign:
         # todo question
         key_passw = ""
 
-        command = [self.jsign_path, "-kst", "PKCS12", "-ksf", self.key_path, "-ksp", key_passw, "-V", filename]
+        command = self.bin + ["-kst", "PKCS12", "-ksf", self.key, "-V", filename]
+        passwd = getpass.getpass()
+        command[:-1] += ["-ksp", passwd]
 
-        subprocess.call(command)
+        try:
+            subprocess.call(command)
+        except Exception as e:
+            print(e)
+        finally:
+            del(passwd, command)
