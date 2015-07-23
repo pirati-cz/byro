@@ -11,7 +11,7 @@ Pomocník na byrokracii Byro
 **Tenle cvičený opičák za vás rád udělá byrokracii,
 kterou byste ztratili hodiny práce.** 
 
-![Maskot programu Byro](mascot.png)
+![Maskot programu Byro](files/mascot.png)
 
 ----
 
@@ -56,9 +56,9 @@ id:
 
 ## Povolené hodnoty
 
-year: this, last, 2014, 2015, ... 
-month: this, last, leden, únor, ..., prosinec, 1, ..., 12
-user: id, nebo nickname
+year: this, last, 2014, 2015, ...  
+month: this, last, leden, únor, ..., prosinec, 1, ..., 12  
+user: id, nebo nickname  
 
 Používání
 ---------
@@ -96,6 +96,23 @@ Odešle dokument `main_signed.pdf` a jeho přílohy uložené v adresáři `atta
 ## byro full
 
 Aplikuje příkazy `pdf`, `sign`, `save` a podle informací v hlavičce souboru odešle datovou schránkou `ds` nebo e-mailem `mail`. 
+
+
+Testing
+-------
+
+```
+python3 -m unittest discover
+```
+
+Použité knihovny
+----------------
+
+Python:
+
+* [ConfigArgParse](https://pypi.python.org/pypi/ConfigArgParse)
+* [Python redmine](https://github.com/maxtepkeev/python-redmine)
+* [Python docx (part of python-openxml)](https://github.com/python-openxml/python-docx)
 
 
 Rozšiřování

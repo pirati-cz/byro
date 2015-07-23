@@ -24,3 +24,6 @@
 *~
 StempelGaramond*
 *.swp
+__pycache__
+*.pyc
+.idea

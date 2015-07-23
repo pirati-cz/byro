@@ -11,9 +11,10 @@ import subprocess
 
 class PdfSign:
 
-    def __init__(self, bin_path, key_path):
-        self.jsign_path = bin_path
-        self.key_path = key_path
+    def __init__(self, args):
+        self.bin = args.sign_bin
+        self.key = args.sign_key
+        self.reason = args.sign_reason
 
     def download_dependency(self):
         url = "http://sourceforge.net/projects/jsignpdf/files/latest/download?source=files"
