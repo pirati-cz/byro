@@ -8,8 +8,8 @@ license:  Affero GNU-GPL
 Pomocník na byrokracii Byro
 ============================
 
-**Tahle cvičená opice za vás ráda udělá byrokracii,
-kterou byste strávili hodiny zbytečné práce.** 
+**Tenle cvičený opičák za vás rád udělá byrokracii,
+kterou byste ztratili hodiny práce.** 
 
 ![Maskot programu Byro](files/mascot.png)
 

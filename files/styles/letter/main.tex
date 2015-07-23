@@ -19,13 +19,28 @@
 $if(your.ds)$
 
 \bigskip
-\DS{$your.ds$}$endif$}
+\DS{$your.ds$}$endif$
 
+$if(your.note)$
+
+\bigskip%
+$endif$$for(your.note)$$your.note$ $sep$\\$endfor$}
+
+\bigskip
 \printheader
 
 \subject{$title$}
 }
-\AtEndDocument{\signature{$for(signature)$$signature$$sep$\\$endfor$}}
+\AtEndDocument{\signature{$for(signature)$$signature$$sep$\\$endfor$}
+$if(attachments)$
+
+{\bf Přílohy}
+
+\begin{itemize}[noitemsep]
+$for(attachments)$\item $attachments$$endfor$
+\end{itemize}
+$endif$
+}
 
 
 
@@ -95,7 +110,8 @@ $endif$
 \else
   \usepackage[unicode=true]{hyperref}
 \fi
-\usepackage[usenames,dvipsnames]{color}
+% CUSTOMIZED COMMENT
+%\usepackage[usenames,dvipsnames]{color}
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={$author-meta$},
