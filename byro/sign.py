@@ -55,9 +55,6 @@ class PdfSign:
 
     def sign(self, filename):
 
-        # todo question
-        key_passw = ""
-
         command = self.bin + ["-kst", "PKCS12", "-ksf", self.key, "-V", filename]
         passwd = getpass.getpass()
         command[:-1] += ["-ksp", passwd]

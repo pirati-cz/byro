@@ -108,7 +108,6 @@ class SplitFilename(unittest.TestCase):
         self.assertEqual(res[1], ".txt")
 
 
-
 def offline():
     try:
         response = urlopen('http://74.125.228.100', timeout=1)

@@ -11,32 +11,46 @@ from byro.utils import Utils
 
 
 class Pandoc:
-    def __init__(self, bin):
+    def __init__(self, bin="pandoc"):
         self.bin = bin
         self.params = ["--smart"]
         self.check_dependency()
 
     def check_dependency(self):
         command = [self.bin, "-v"]
-        FNULL = open(os.devnull, 'w')
+        fnull = open(os.devnull, 'w')
 
         try:
-            subprocess.check_call(command, stdout=FNULL)
+            subprocess.check_call(command, stdout=fnull)
         except subprocess.CalledProcessError:
             print("Cesta k pandoc není správná. Cesta: %s" % command, file=sys.stderr)
             exit()
+        finally:
+            fnull.close()
 
-    def convert(self, input, template=None, output=None):
+    @staticmethod
+    def output_name(input, output = None):
         if output is None:
-            output = Utils.split_filename(input)[0] + ".pdf"
-        template = None
+            return Utils.split_filename(input)[0] + ".pdf"
+        else:
+            return output
+
+    def convert(self, input, template="", output=None, verbosity=True):
+        output = Pandoc.output_name(input, output)
+
         command = [self.bin] + \
                   self.params + \
                   ["-f", "markdown",
                    "--latex-engine=xelatex",
-                   "-t", "latex",
-                   "-o", output, input]
+                   "-t", "latex"]
+
+        if template:
+            # todo
+            pass
+
+        command += ["-o", output, input]
 
         subprocess.call(command)
 
-        print("%s byl konvertován v %s" % (input, output))
+        if verbosity:
+            print("%s byl konvertován v %s" % (input, output))
