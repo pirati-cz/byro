@@ -25,24 +25,35 @@ class App:
         )
 
         p.add('-c', '--config', is_config_file=True,  help='config file path')
-        p.add(      '--url',      help="Target Redmine url.")
-        p.add('-p', '--project',  help="Redmine project")
-        p.add('-y', '--year',     help="")
-        p.add('-m', '--month',    help="")
-        p.add('-u', '--user',     help="Redmine user nickname or id")
-        p.add('-i', '--input',    help="Input file name")
-        p.add('-o', '--out',      help="Output file name")
-        p.add('-l', '--locale',   help="")
         p.add('-g', '--gui', type=bool, help="")
-        p.add('-k', '--sign-key', help="")
-        p.add(	    '--sign-bin', help="" )
-        p.add('-V', '--sign-visible', type=bool, help="")
-        p.add(	    '--sign-reason', help="" )
-        p.add(	    '--sign-location', help="" )
-        p.add(	    '--sign-contact', help="" )
-        p.add(      '--pandoc-bin', help="")
-        p.add(      '--tex-bin', help="")
-        p.add(      '--ds-id', help="")
+        p.add('-l', '--locale',   help="")
+
+        vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
+        vyc.add(      '--url',      help="Target Redmine url.")
+        vyc.add('-p', '--project',  help="Redmine project")
+        vyc.add('-y', '--year',     help="Year")
+        vyc.add('-m', '--month',    help="Month")
+        vyc.add('-u', '--user',     help="Redmine user nickname or id")
+
+        sign = p.add_argument_group('Sign', "Digital sign of pdf file.")
+        sign.add('-k', '--sign-key', help="Path to the key.pfx")
+        sign.add(	    '--sign-bin', help="Path to the jPdfSign" )
+        sign.add('-V', '--sign-visible', type=bool, help="")
+        sign.add(	    '--sign-reason', help="" )
+        sign.add(	    '--sign-location', help="" )
+        sign.add(	    '--sign-contact', help="" )
+
+        pdf = p.add_argument_group('Pdf', "Convert markdown into pdf via Pandoc.")
+        pdf.add(      '--pandoc-bin', help="")
+        pdf.add(      '--tex-bin', help="")
+        pdf.add('-t', '--template', help="")
+        pdf.add('-i', '--input',    help="Input file name")
+        pdf.add('-o', '--out',      help="Output file name")
+
+        mail = p.add_argument_group('Mail', "Send mass mails, body is markdown file, list of recipients is file")
+
+        ds = p.add_argument_group('Ds')
+        ds.add(      '--ds-id', help="")
 
         self.arg_parser = p
         self.args = p.parse_args()
@@ -53,7 +64,7 @@ class App:
     def pdf(self):
         pandoc = Pandoc(self.args.pandoc_bin)
         #TODO: gives real filename
-        pandoc.convert("README.md")
+        pandoc.convert(self.args.input)
 
     def vycetka(self):
         redmine = BRedmine(self.args.user, self.args.url, self.args.project, self.args.month)

@@ -36,6 +36,10 @@ class Pandoc:
             return output
 
     def convert(self, input, template="", output=None, verbosity=True):
+
+        if not os.path.exists(input):
+            raise ValueError("File %s does not exists" % input)
+
         output = Pandoc.output_name(input, output)
 
         command = [self.bin] + \
