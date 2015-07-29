@@ -35,6 +35,7 @@ class App:
         p.add('-c', '--config', is_config_file=True,  help='config file path')
         p.add('-g', '--gui', type=bool, help="")
         p.add('-l', '--locale',   help="")
+        p.add('-o', '--out',      help="Output file name")
 
         vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
         vyc.add(      '--url',      help="Target Redmine url.")
@@ -55,7 +56,6 @@ class App:
         pdf.add(      '--pandoc-bin', help="Path to pandoc binary.")
         pdf.add(      '--tex-bin',  help="")
         pdf.add('-t', '--template', help="Path to XeLaTeX template.")
-        pdf.add('-o', '--out',      help="Output file name")
 
         mail = p.add_argument_group('Mail', "Send mass mails, body is markdown file, list of recipients is file")
         mail.add("-r", "--recipients", help="Email, or path to text file with recipients divided by newline.")
@@ -92,13 +92,19 @@ class App:
     def ocr(self):
         from PIL import Image
         import pytesseract
+        text = ""
         for file in self.args.inputs:
             try:
                 img = Image.open(file)
             except OSError:
                 print("Only image can be OCR. For pdf use:\npdftocairo -jpeg <file>.pdf")
                 exit()
-            text = pytesseract.image_to_string(img, lang="ces")
+            text += pytesseract.image_to_string(img, lang="ces")
+
+        if self.args.out:
+            with open(self.args.out, "w") as f:
+                f.write(text)
+        else:
             print(text)
 
     def args_test(self):
