@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
+"""
+Clever assistant for each bureaucrat.
+"""
 
 import locale
 from byro.bredmine import BRedmine
@@ -7,6 +10,9 @@ from byro.vycetka import (Cmd, DocX)
 from byro.sign import PdfSign
 from byro.pandoc import Pandoc
 from byro.configargparse import ByroParse
+
+
+__author__ = ['Ondřej Profant', 'Jakub Michálek']
 
 
 class App:
@@ -21,7 +27,9 @@ class App:
 
         p = ByroParse(
             subcommands,
-            default_config_files=['files/config.ini']
+            default_config_files=['files/config.ini'],
+            description=__doc__,
+            epilog=str(__author__)
         )
 
         p.add('-c', '--config', is_config_file=True,  help='config file path')
@@ -51,6 +59,9 @@ class App:
         pdf.add('-o', '--out',      help="Output file name")
 
         mail = p.add_argument_group('Mail', "Send mass mails, body is markdown file, list of recipients is file")
+        mail.add("-r", "--recipients")
+        mail.add("-f", "--from")
+        mail.add("--login")
 
         ds = p.add_argument_group('Ds')
         ds.add(      '--ds-id', help="")
