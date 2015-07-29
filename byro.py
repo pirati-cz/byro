@@ -23,7 +23,7 @@ class App:
 
     def _parse_args(self):
 
-        subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "args"]
+        subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args"]
 
         p = ByroParse(
             subcommands,
@@ -116,6 +116,8 @@ class App:
             self.args_test()
         elif c == "pdf":
             self.pdf()
+        elif c == "ocr":
+            self.ocr()
         elif c == "sign":
             self.sign()
         elif c == "vycetka":

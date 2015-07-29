@@ -35,7 +35,7 @@ Python dependency
 
 ```bash
 sudo pip3 install --upgrade pip  
-sudo pip3 install wget dateutils markdown ConfigArgParse python-redmine python-docx
+sudo pip3 install wget dateutils markdown ConfigArgParse python-redmine python-docx pytesseract
 ```
 
 
