@@ -9,9 +9,9 @@ __author__ = "Ondřej Profant"
 __copyright__ = "Copyright 2015, Ondřej Profant"
 __credits__ = ["Ondřej Profant"]
 __license__ = "GPLv3"
-__version__ = "1.0.1"
+__version__ = "0.1.0"
 __maintainer__ = "Ondřej Profant"
 __email__ = "ondrej.profant@gmal.com"
-__status__ = "Production"
+__status__ = "Alpha"
 
-__all__ = ["utils", "output", "main"]
+__all__ = ["bredmine", "configargparse", "mail", "pandoc", "sign", "utils", "vycetka"]

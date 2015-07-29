@@ -38,10 +38,10 @@ class App:
 
         vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
         vyc.add(      '--url',      help="Target Redmine url.")
-        vyc.add('-p', '--project',  help="Redmine project")
-        vyc.add('-y', '--year',     help="Year")
-        vyc.add('-m', '--month',    help="Month")
-        vyc.add('-u', '--user',     help="Redmine user nickname or id")
+        vyc.add('-p', '--project',  help="Redmine project name.")
+        vyc.add('-y', '--year',     help="Values: this, last, 2014, 2015, ...")
+        vyc.add('-m', '--month',    help="Values: this, last, leden, únor, ..., prosinec, 1, ..., 12. Determinate by localization.")
+        vyc.add('-u', '--user',     help="Redmine user nickname or id.")
 
         sign = p.add_argument_group('Sign', "Digital sign of pdf file.")
         sign.add('-k', '--sign-key', help="Path to the key.pfx")
@@ -52,15 +52,15 @@ class App:
         sign.add(	    '--sign-contact', help="" )
 
         pdf = p.add_argument_group('Pdf', "Convert markdown into pdf via Pandoc.")
-        pdf.add(      '--pandoc-bin', help="")
-        pdf.add(      '--tex-bin', help="")
-        pdf.add('-t', '--template', help="")
+        pdf.add(      '--pandoc-bin', help="Path to pandoc binary.")
+        pdf.add(      '--tex-bin',  help="")
+        pdf.add('-t', '--template', help="Path to XeLaTeX template.")
         pdf.add('-i', '--input',    help="Input file name")
         pdf.add('-o', '--out',      help="Output file name")
 
         mail = p.add_argument_group('Mail', "Send mass mails, body is markdown file, list of recipients is file")
-        mail.add("-r", "--recipients")
-        mail.add("-f", "--from")
+        mail.add("-r", "--recipients", help="Email, or path to text file with recipients divided by newline.")
+        mail.add("-f", "--from",       help="Sender email address.")
         mail.add("--login")
 
         ds = p.add_argument_group('Ds')

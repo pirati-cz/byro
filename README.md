@@ -23,42 +23,13 @@ Program `byro` je soubor utilit, které umožňují z příkazové řádky:
 * posílat dokumenty e-mailem nebo datovou schránkou,
 * generovat výkazy z redmine. 
 
-Program vytvořil klub Pirátů v zastupitelstvu hl. m. Prahy.
+Program vytvořil [klub Pirátů](http://praha.pirati.cz) v zastupitelstvu hl. m. Prahy.
 
 
 Postup při instalaci
 --------------------
-TODO
 
-Požadavek je, aby se instaloval a aktualizoval jednoduchým způsobem jedním příkazem (patrně pip).
-
-Konfigurační soubor:
-
-```
-[bin]:
-jsign: java -jar /opt/jsignpdf/JSignPdf.jar
-pandoc: pandoc
-tex: xelatex
-
-[sign]
-sign_key: 
-
-[vycetka]
-redmine: https://redmine.pirati.cz
-project: praha
-year: this
-month: last
-user: kedrigern
-
-[ds]
-id:
-```
-
-## Povolené hodnoty
-
-year: this, last, 2014, 2015, ...  
-month: this, last, leden, únor, ..., prosinec, 1, ..., 12  
-user: id, nebo nickname  
+See [INSTALL.md](./INSTALL.md) file.
 
 Používání
 ---------
@@ -97,23 +68,3 @@ Odešle dokument `main_signed.pdf` a jeho přílohy uložené v adresáři `atta
 
 Aplikuje příkazy `pdf`, `sign`, `save` a podle informací v hlavičce souboru odešle datovou schránkou `ds` nebo e-mailem `mail`. 
 
-
-Testing
--------
-
-```
-python3 -m unittest discover
-```
-
-Použité knihovny
-----------------
-
-Python:
-
-* [ConfigArgParse](https://pypi.python.org/pypi/ConfigArgParse)
-* [Python redmine](https://github.com/maxtepkeev/python-redmine)
-* [Python docx (part of python-openxml)](https://github.com/python-openxml/python-docx)
-
-
-Rozšiřování
------------

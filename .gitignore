@@ -1,3 +1,23 @@
+#
+# General
+#
+*~
+*.swp
+
+#
+# Python
+#
+__pycache__
+*.pyc
+
+#
+# IDE
+#
+.idea
+
+#
+# TeX
+#
 *.aux
 *.glo
 *.idx
@@ -21,9 +41,3 @@
 *.mtc1
 *.out
 *.synctex.gz
-*~
-StempelGaramond*
-*.swp
-__pycache__
-*.pyc
-.idea

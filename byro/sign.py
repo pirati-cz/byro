@@ -19,6 +19,7 @@ class PdfSign:
         self.check_dependency()
 
     def download_dependency(self):
+        # todo
         url = "http://sourceforge.net/projects/jsignpdf/files/latest/download?source=files"
         file = "jsign.zip"
         wdir = "tmp"
