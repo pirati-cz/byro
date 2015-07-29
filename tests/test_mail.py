@@ -11,13 +11,13 @@ def get_test_files_dir():
 
 class Recipients(unittest.TestCase):
 
-    def test_mail(self):
+    def test_recipients_mail(self):
         mail = "john.doe@example.com"
         returned = Mail._read_recipients_from_file(mail)
         expected = [mail]
         self.assertEqual(returned, expected)
 
-    def test_file(self):
+    def test_recipients_file(self):
         filename = get_test_files_dir()
         filename += "recipients.txt"
         rec_ac = Mail._read_recipients_from_file(filename)
@@ -27,7 +27,7 @@ class Recipients(unittest.TestCase):
 
 class Body(unittest.TestCase):
 
-    def test_simple(self):
+    def test_mail_body_simple(self):
         path = get_test_files_dir()
         filename = path + "simple-body.md"
         returned = Mail._read_markdown_body(filename)
@@ -40,7 +40,7 @@ class Body(unittest.TestCase):
 
         self.assertEqual(returned['meta'], {})
 
-    def test_advance(self):
+    def test_mail_body_advance(self):
         path = get_test_files_dir()
         filename = path + "advance-body.md"
         returned = Mail._read_markdown_body(filename)

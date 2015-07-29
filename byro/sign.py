@@ -12,13 +12,14 @@ import subprocess
 
 class PdfSign:
 
-    def __init__(self, args):
-        self.bin = ["java", "-jar", args.sign_bin]
-        self.key = args.sign_key
-        self.reason = args.sign_reason
+    def __init__(self, bin, key):
+        self.bin = ["java", "-jar", bin]
+        self.key = key
+        self.reason = ""
         self.check_dependency()
 
-    def download_dependency(self):
+    @staticmethod
+    def download_dependency():
         # todo
         url = "http://sourceforge.net/projects/jsignpdf/files/latest/download?source=files"
         file = "jsign.zip"
@@ -54,15 +55,14 @@ class PdfSign:
             print("Cesta k podpisovému klíči není správná. Cesta: %s" % self.key, file=sys.stderr)
             exit()
 
-    def sign(self, filename):
-
-        command = self.bin + ["-kst", "PKCS12", "-ksf", self.key, "-V", filename]
+    def sign(self, filenames):
         passwd = getpass.getpass()
-        command[:-1] += ["-ksp", passwd]
+        command = self.bin + ["-kst", "PKCS12", "-ksf", self.key, "-V", "-ksp", passwd]
 
-        try:
-            subprocess.call(command)
-        except Exception as e:
-            print(e)
-        finally:
-            del(passwd, command)
+        for filename in filenames:
+            try:
+                subprocess.call(command + [filename])
+            except Exception as e:
+                print(e)
+
+        del(passwd, command)

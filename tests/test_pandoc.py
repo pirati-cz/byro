@@ -9,16 +9,16 @@ def get_test_files_dir():
 
 class Convert(unittest.TestCase):
 
-    def test_name(self):
-        name = "main.md"
-        returned = Pandoc.output_name(name)
+    def test_pandoc_test_name(self):
+        names = ["main.md"]
+        returned = Pandoc.output_name(names)
         expected = "main.pdf"
         self.assertEqual(returned, expected)
 
-    def test1(self):
+    def test_pandoc_convert(self):
         pandoc = Pandoc()
         path = get_test_files_dir()
-        filename = path + 'simple-body.md'
+        filename = [path + 'simple-body.md']
         expected = path + 'simple-body.pdf'
         pandoc.convert(filename, verbosity=False)
         self.assertTrue(os.path.exists(expected))

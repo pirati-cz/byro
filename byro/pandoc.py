@@ -31,14 +31,15 @@ class Pandoc:
     @staticmethod
     def output_name(input, output = None):
         if output is None:
-            return Utils.split_filename(input)[0] + ".pdf"
+            return Utils.split_filename(input[0])[0] + ".pdf"
         else:
             return output
 
     def convert(self, input, template="", output=None, verbosity=True):
 
-        if not os.path.exists(input):
-            raise ValueError("File %s does not exists" % input)
+        for file in input:
+            if not os.path.exists(file):
+                raise ValueError("File %s does not exists" % file)
 
         output = Pandoc.output_name(input, output)
 
@@ -52,7 +53,7 @@ class Pandoc:
             # todo
             pass
 
-        command += ["-o", output, input]
+        command += ["-o", output] + input
 
         subprocess.call(command)
 

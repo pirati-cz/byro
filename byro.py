@@ -55,7 +55,6 @@ class App:
         pdf.add(      '--pandoc-bin', help="Path to pandoc binary.")
         pdf.add(      '--tex-bin',  help="")
         pdf.add('-t', '--template', help="Path to XeLaTeX template.")
-        pdf.add('-i', '--input',    help="Input file name")
         pdf.add('-o', '--out',      help="Output file name")
 
         mail = p.add_argument_group('Mail', "Send mass mails, body is markdown file, list of recipients is file")
@@ -66,6 +65,8 @@ class App:
         ds = p.add_argument_group('Ds')
         ds.add(      '--ds-id', help="")
 
+        p.add_argument('inputs', metavar='input files', nargs='*', help='Input files')
+
         self.arg_parser = p
         self.args = p.parse_args()
 
@@ -75,7 +76,7 @@ class App:
     def pdf(self):
         pandoc = Pandoc(self.args.pandoc_bin)
         #TODO: gives real filename
-        pandoc.convert(self.args.input)
+        pandoc.convert(self.args.inputs)
 
     def vycetka(self):
         redmine = BRedmine(self.args.user, self.args.url, self.args.project, self.args.month)
@@ -85,9 +86,20 @@ class App:
         docx.show()
 
     def sign(self):
-        pass
-        sign = PdfSign(self.args)
-        sign.sign(self.args.input)
+        sign = PdfSign(self.args.sign_bin, self.args.sign_key)
+        sign.sign(self.args.inputs)
+
+    def ocr(self):
+        from PIL import Image
+        import pytesseract
+        for file in self.args.inputs:
+            try:
+                img = Image.open(file)
+            except OSError:
+                print("Only image can be OCR. For pdf use:\npdftocairo -jpeg <file>.pdf")
+                exit()
+            text = pytesseract.image_to_string(img, lang="ces")
+            print(text)
 
     def args_test(self):
         print(self.args)

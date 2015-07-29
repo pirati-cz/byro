@@ -78,6 +78,8 @@ Classic unit tests:
 python3 -m unittest discover
 ```
 
+For more detail add `-v`.
+
 ### Update
 
 For newest repository version: 
