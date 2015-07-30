@@ -58,6 +58,7 @@ cd <path-to-repo>
 git clone https://github.com/pirati-cz/byro
 cd byro
 git checkout `git for-each-ref --sort='*authordate' --format='%(tag)' refs/tags`
+cp files/config-example.ini files/config.ini
 python3 -m unittest discover
 ```
 
