@@ -6,23 +6,25 @@ from byro.mail import Mail
 
 
 def get_test_files_dir():
-        return os.path.realpath(os.path.dirname(__file__)) + "/data/"
+    return os.path.realpath(os.path.dirname(__file__)) + "/data/"
 
 
 class Recipients(unittest.TestCase):
 
     def test_recipients_mail(self):
+        body = get_test_files_dir() + "simple-body.md"
         mail = "john.doe@example.com"
-        returned = Mail._read_recipients_from_file(mail)
-        expected = [mail]
-        self.assertEqual(returned, expected)
+        m = Mail("", "", body=body, recipients=mail)
+        expected = [[mail]]
+        self.assertEqual(m.recipients, expected)
 
     def test_recipients_file(self):
         filename = get_test_files_dir()
         filename += "recipients.txt"
-        rec_ac = Mail._read_recipients_from_file(filename)
-        rec_ex = ["email@example.com", "email@example.cz", "email@example.eu"]
-        self.assertEqual(rec_ac, rec_ex)
+        body = get_test_files_dir() + "simple-body.md"
+        m = Mail("", "", body=body, recipients=filename, limit=2)
+        expected = [["email@example.com", "email@example.cz"], ["email@example.eu"]]
+        self.assertEqual(m.recipients, expected)
 
 
 class Body(unittest.TestCase):

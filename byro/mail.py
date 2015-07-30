@@ -1,57 +1,81 @@
 #!/usr/bin/env python3
 
 import re
+import time
 import smtplib
 from getpass import getpass
 from markdown import Markdown
 from email.message import EmailMessage
 
 
+def chunks(l, n):
+    """Yield successive n-sized chunks from l."""
+    for i in range(0, len(l), n):
+        yield l[i:i+n]
+
+
 class Mail:
 
-    def __init__(self, frm, login, recipients="recipients.txt", body="advance-body.md"):
+    def __init__(self, login, frm, recipients=None, body=None, server=None, limit=35, delay=35):
+        self._limit = limit
+        self._delay = delay
         self.frm = frm
         self.login = login
+        self.server = server
         self.recipients = self._read_recipients_from_file(recipients)
-        self.content = self._read_markdown_body(body)
-        pass
+        self.content = self._read_markdown_body(body[0])
 
     def send(self):
-        msg = self._prepare_message()
+        msgs = self._prepare_message()
         passwd = getpass()
 
         try:
             #server = smtplib.SMTP(SERVER)
-            server = smtplib.SMTP("smtp.gmail.com", 587) #or port 465 doesn't seem to work!
+            server = smtplib.SMTP(self.server, 587) #or port 465 doesn't seem to work!
             server.ehlo()
             server.starttls()
             server.login(self.login, passwd)
-            server.send_message(msg)
+            first = True
+            for msg in msgs:
+                if first:
+                    first = False
+                else:
+                    print("Send next group of mails")
+                    time.sleep(self._delay)
+                server.send_message(msg)
+
             server.close()
             print('Successfully sent the mail')
         except Exception as e:
             print("Failed to send mail:")
             print(e)
+        finally:
+            del(passwd)
 
     def _prepare_message(self):
-        msg = EmailMessage()
-        msg['From'] = self.frm
-        msg['To'] = self.recipients
-        content = self.content
-        msg['Subject'] = content['meta']['subject'][0]
-        msg.set_content(content['raw'])
-        msg.add_alternative(content['html'], subtype='html')
-        return msg
+        msgs = []
+        for rec_group in self.recipients:
+            msg = EmailMessage()
+            msg['From'] = self.frm
+            msg['To'] = rec_group
+            content = self.content
+            msg['Subject'] = content['meta']['subject'][0]
+            msg.set_content(content['raw'])
+            msg.add_alternative(content['html'], subtype='html')
+            msgs.append(msg)
+        return msgs
 
-    @staticmethod
-    def _read_recipients_from_file(filename):
+    def _read_recipients_from_file(self, filename):
         mail = "[^@]+@[^@]+\.[^@]+"
 
         if re.match(mail, filename):
-            return [filename]
+            return [[filename]]
         else:
             with open(filename) as f:
-                return list(line.rstrip('\n') for line in f)
+                rec = list(line.rstrip('\n') for line in f)
+
+            return list(chunks(rec, self._limit))
+
 
     @staticmethod
     def _read_markdown_body(filename):

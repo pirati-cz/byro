@@ -10,6 +10,7 @@ from byro.vycetka import (Cmd, DocX)
 from byro.sign import PdfSign
 from byro.convertor import Convertor
 from byro.configargparse import ByroParse
+from byro.mail import Mail
 
 
 __author__ = ['Ondřej Profant', 'Jakub Michálek']
@@ -59,8 +60,9 @@ class App:
 
         mail = p.add_argument_group('Mail', "Send mass mails, body is markdown file, list of recipients is file")
         mail.add("-r", "--recipients", help="Email, or path to text file with recipients divided by newline.")
-        mail.add("-f", "--from",       help="Sender email address.")
-        mail.add("--login")
+        mail.add("-f", "--frm",       help="Sender email address.")
+        mail.add("--login", help="Email login")
+        mail.add("--server", help="Email server")
 
         ds = p.add_argument_group('Ds')
         ds.add(      '--ds-id', help="")
@@ -88,6 +90,14 @@ class App:
     def sign(self):
         sign = PdfSign(self.args.sign_bin, self.args.sign_key)
         sign.sign(self.args.inputs)
+
+    def mail(self):
+
+        mail = Mail(self.args.login, self.args.frm,
+                    recipients=self.args.recipients,
+                    body=self.args.inputs,
+                    server=self.args.server)
+        mail.send()
 
     def ocr(self):
         from PIL import Image
@@ -126,6 +136,8 @@ class App:
             self.ocr()
         elif c == "sign":
             self.sign()
+        elif c == "mail":
+            self.mail()
         elif c == "vycetka":
             self.vycetka()
         else:
