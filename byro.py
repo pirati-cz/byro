@@ -8,7 +8,7 @@ import locale
 from byro.bredmine import BRedmine
 from byro.vycetka import (Cmd, DocX)
 from byro.sign import PdfSign
-from byro.pandoc import Pandoc
+from byro.convertor import Convertor
 from byro.configargparse import ByroParse
 
 
@@ -74,9 +74,9 @@ class App:
         locale.setlocale(locale.LC_ALL, self.args.locale)
 
     def pdf(self):
-        pandoc = Pandoc(self.args.pandoc_bin)
+        convertor = Convertor(self.args.pandoc_bin)
         #TODO: gives real filename
-        pandoc.convert(self.args.inputs)
+        convertor.convert(self.args.inputs)
 
     def vycetka(self):
         redmine = BRedmine(self.args.user, self.args.url, self.args.project, self.args.month)

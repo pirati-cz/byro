@@ -10,22 +10,33 @@ Package from repository in most common Linux distributions.
 ### Fedora 22
 
 ```bash
-sudo dnf install gcc python3 python3-pip git pandoc tesseract tesseract-langpack-ces \
+sudo dnf install gcc python3 python3-pip git tesseract tesseract-langpack-ces poppler-utils \
 texlive texlive-collection-langczechslovak texlive-collection-mathextra texlive-mathspec texlive-euenc \
-texlive-xetex texlive-xetex-def texlive-xltxtra
+texlive-xetex texlive-xetex-def texlive-xltxtra \
+pandoc libreoffice
 ```
-(~ 198 M)
+(~ 200 MB)
 
 
 ### Ubuntu 14.04 LTS
 
 ```bash
-sudo apt-get install gcc python3 python3-pip git pandoc tesseract-ocr tesseract-ocr-ces \
+sudo apt-get install gcc python3 python3-pip git pandoc libreoffice \
+tesseract-ocr tesseract-ocr-ces poppler-utils \
 texlive texlive-lang-czechslovak texlive-xetex texlive-latex-extra
 ```
-(~ 969 M)
+(~ 1 GB)
+
+### Other OS and other distribution
+
+App is writen in [Python 3][] and using multiplatform technology 
+([XeLaTeX][], [Pandoc][], [Tesseract][]).
+It should be possible to port to other os and other distribution.
+Feel free to send pull request with manual for other OS.
 
 ### Other dependency
+
+Other dependency that are not present in repository:
 
 * [jSignPdf][signHP], [download][signDownload]: in roadmap is automatic installation
 
@@ -112,3 +123,8 @@ Everythink is in the help: `byro -h`
 
 [signHP]: http://sourceforge.net/projects/jsignpdf
 [signDownload]: http://sourceforge.net/projects/jsignpdf/files/latest/download?source=files
+[Python 3]: https://www.python.org
+[XeLaTeX]: http://www.latex-project.org
+[Pandoc]: http://pandoc.org
+[Tesseract]: https://github.com/tesseract-ocr/tesseract
+
