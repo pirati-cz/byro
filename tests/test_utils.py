@@ -87,25 +87,15 @@ class SplitFilename(unittest.TestCase):
     def setUp(self):
         pass
 
-    def test_split_filename_1(self):
-        res = Utils.split_filename("file.md")
-        self.assertEqual(res[0], "file")
-        self.assertEqual(res[1], ".md")
-
-    def test_split_filename_2(self):
-        res = Utils.split_filename("file.tex")
-        self.assertEqual(res[0], "file")
-        self.assertEqual(res[1], ".tex")
-
-    def test_split_filename_3(self):
-        res = Utils.split_filename("file.md.pdf")
-        self.assertEqual(res[0], "file.md")
-        self.assertEqual(res[1], ".pdf")
-
-    def test_split_filename_4(self):
-        res = Utils.split_filename("file-with_extra.symbols.txt")
-        self.assertEqual(res[0], "file-with_extra.symbols")
-        self.assertEqual(res[1], ".txt")
+    def test_split_filename(self):
+        names = [("file", ".md"), ("file", ".tex"),
+                 ("file.md", ".pdf"), ("file-with_extra.symbols", ".txt")]
+        for n in names:
+            with self.subTest(n=n):
+                name = n[0] + n[1]
+                res = Utils.split_filename(name)
+                self.assertEqual(res[0], n[0])
+                self.assertEqual(res[1], n[1])
 
 
 def offline():
