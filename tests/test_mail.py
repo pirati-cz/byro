@@ -12,8 +12,8 @@ def get_test_files_dir():
 class Recipients(unittest.TestCase):
 
     def test_recipients_mail(self):
-        body = get_test_files_dir() + "simple-body.md"
-        mail = "john.doe@example.com"
+        body = [get_test_files_dir() + "simple-body.md"]
+        mail = ["john.doe@example.com"]
         m = Mail("", "", body=body, recipients=mail)
         expected = [[mail]]
         self.assertEqual(m.recipients, expected)
@@ -21,8 +21,8 @@ class Recipients(unittest.TestCase):
     def test_recipients_file(self):
         filename = get_test_files_dir()
         filename += "recipients.txt"
-        body = get_test_files_dir() + "simple-body.md"
-        m = Mail("", "", body=body, recipients=filename, limit=2)
+        body = [get_test_files_dir() + "simple-body.md"]
+        m = Mail("", "", body=body, recipients=[filename], limit=2)
         expected = [["email@example.com", "email@example.cz"], ["email@example.eu"]]
         self.assertEqual(m.recipients, expected)
 

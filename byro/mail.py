@@ -67,15 +67,19 @@ class Mail:
 
     def _read_recipients_from_file(self, filename):
         mail = "[^@]+@[^@]+\.[^@]+"
+        rec = []
 
-        if re.match(mail, filename):
-            return [[filename]]
+        if isinstance(filename, list):
+            for file in filename:
+                if re.match(mail, file):
+                    rec.append(file)
+                else:
+                    with open(file) as f:
+                        rec += list(line.rstrip('\n') for line in f)
         else:
-            with open(filename) as f:
-                rec = list(line.rstrip('\n') for line in f)
+            raise ValueError("Recipients may be list of files or mails")
 
-            return list(chunks(rec, self._limit))
-
+        return list(chunks(rec, self._limit))
 
     @staticmethod
     def _read_markdown_body(filename):

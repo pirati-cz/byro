@@ -94,7 +94,7 @@ class App:
     def mail(self):
 
         mail = Mail(self.args.login, self.args.frm,
-                    recipients=self.args.recipients,
+                    recipients=[self.args.recipients],
                     body=self.args.inputs,
                     server=self.args.server)
         mail.send()
