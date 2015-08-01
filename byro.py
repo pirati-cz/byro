@@ -4,6 +4,7 @@
 Clever assistant for each bureaucrat.
 """
 
+import os
 import locale
 from byro.bredmine import BRedmine
 from byro.vycetka import (Cmd, DocX)
@@ -14,6 +15,7 @@ from byro.mail import Mail
 
 
 __author__ = ['Ondřej Profant', 'Jakub Michálek']
+__dir__ = os.path.realpath(os.path.dirname(__file__))
 
 
 class App:
@@ -28,7 +30,7 @@ class App:
 
         p = ByroParse(
             subcommands,
-            default_config_files=['files/config.ini'],
+            default_config_files=['files/config.ini', __dir__ + '/files/config.ini'],
             description=__doc__,
             epilog=str(__author__)
         )
@@ -119,6 +121,7 @@ class App:
 
     def args_test(self):
         print(self.args)
+        print(__dir__ + '/files/config.ini')
 
     def main(self):
 
