@@ -1,15 +1,28 @@
 #!/usr/bin/env python3
 
-from distutils.core import setup
+from setuptools import (setup, find_packages)
 
-setup(name='Byro',
-    version='0.1.0',
-    description='',
-    license='Affero GNU-GPL',
+setup(
+    # Basic
+    name='Byro',
+    version='0.2.0',
+    packages=find_packages(),
+    scripts=['byro.py'],
+
+    # Requirements
+    install_requires= ["wget", "dateutils", "markdown",
+                       "ConfigArgParse",
+                       "python-redmine", "python-docx",
+                       "pytesseract"],
+
+    # About
     author='Ondřej Profant, Jakub Michálek',
     author_email='ondrej.profant@gmal.com',
+    description='',
+    license='Affero GNU-GPL v3',
+    keywords="bureaucracy administration ocr pdf markdown",
     url='https://github.com/pirati-cz/byro/',
-    libraries=['wget', 'dateutils', 'markdown', 'ConfigArgParse', 'python-redmine', 'python-docx'],
+
     classifiers = [
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

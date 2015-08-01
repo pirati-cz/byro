@@ -30,7 +30,7 @@ class App:
 
         p = ByroParse(
             subcommands,
-            default_config_files=['files/config.ini', __dir__ + '/files/config.ini'],
+            default_config_files=['files/config.ini', os.path.expanduser('~') + "/.byro.ini"],
             description=__doc__,
             epilog=str(__author__)
         )
