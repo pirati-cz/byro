@@ -20,25 +20,23 @@ class ValueErrorPdf(ValueError):
 
 
 class Convertor:
-    def __init__(self, bin="pandoc"):
+    def __init__(self, bin):
         self.bin = bin
         self.params = ["--smart"]
         self.check_dependency()
 
     def check_dependency(self):
         command = [self.bin, "-v"]
-        fnull = open(os.devnull, 'w')
 
         try:
-            subprocess.check_call(command, stdout=fnull)
+            with open(os.devnull, 'w') as fnull:
+                subprocess.check_call(command, stdout=fnull)
         except subprocess.CalledProcessError:
             print("Cesta k pandoc není správná. Cesta: %s" % command, file=sys.stderr)
             exit()
-        finally:
-            fnull.close()
 
     @staticmethod
-    def output_name(input, output = None):
+    def output_name(input, output=None):
         if output is None:
             splited = Utils.split_filename(input[0])
             if splited[1] in _lo_can_convert:
@@ -49,14 +47,14 @@ class Convertor:
         else:
             return output
 
-    def convert(self, input, template="", output=None, verbosity=True):
+    def convert(self, inputs, template="", output=None, verbosity=True):
 
-        for file in input:
+        for file in inputs:
             if not os.path.exists(file):
                 raise ValueError("File %s does not exists" % file)
 
         try:
-            output = Convertor.output_name(input, output)
+            output = Convertor.output_name(inputs, output)
 
             command = [self.bin] + \
                       self.params + \
@@ -68,22 +66,20 @@ class Convertor:
                 # todo
                 pass
 
-            command += ["-o", output] + input
+            command += ["-o", output] + inputs
 
             subprocess.call(command)
 
             if verbosity:
-                print("%s byl konvertován v %s" % (input, output))
+                print("%s byl konvertován v %s" % (inputs, output))
 
         except ValueErrorLO:
-            self.convertDocx(input)
+            self.convertDocx(inputs)
 
-    def convertDocx(self, input, verbosity=True):
-        if not os.path.exists(input):
-            raise ValueError("File %s does not exist" % input)
+    def convertDocx(self, inputs, verbosity=True):
 
-        command = ['libreoffice', '--invisible', '--convert-to', 'pdf',]
+        command = ['libreoffice', '--invisible', '--convert-to', 'pdf'] + inputs
         subprocess.call(command)
 
         if verbosity:
-                print("%s byl konvertován do PDF." % (input))
+            print("%s byl konvertován do PDF." % str(inputs))
