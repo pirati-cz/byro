@@ -1,0 +1,3 @@
+email@example.com
+email@example.cz
+email@example.eu

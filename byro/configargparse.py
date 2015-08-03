@@ -33,7 +33,7 @@ class ByroParse(configargparse.ArgParser):
         cmd = sys.argv[1]
         args = sys.argv[2:]
 
-        if cmd not in self.commands + ["-v", "--version"]:
+        if cmd not in self.commands + ["-h", "-v", "--version", '--help']:
             print(cmd)
             self.print_help()
             sys.exit()
