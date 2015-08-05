@@ -31,6 +31,13 @@ class App:
 			print("First run, create user config: ", self.user_confg)
 			shutil.copy(self.default_config, self.user_confg)
 
+		nautilus_scripts = path.expanduser('~') + "/local/share/nautilus/scripts"
+		if sys.platform == "linux2" and path.exists(nautilus_scripts):
+			print("Would you like install Nautilus scripts?")
+			print("Unfortunetly not implemented yet")
+			# TODO
+
+
 	def _parse_args(self):
 
 		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args"]
@@ -96,8 +103,10 @@ class App:
 		redmine = BRedmine(self.args.user, self.args.url, self.args.project, self.args.month)
 		data = redmine.get_data()
 		# data.export_to_bin_file("data-6-OP.p")
+		# cmd = Cmd(data)
 		docx = DocX(data, self.args.out)
 		docx.show()
+		# cmd.show()
 
 	def sign(self):
 		sign = PdfSign(self.args.sign_bin, self.args.sign_key)

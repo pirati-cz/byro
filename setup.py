@@ -5,7 +5,7 @@ from setuptools import (setup, find_packages)
 setup(
 	# Basic
 	name='Byro',
-	version='0.3.0',
+	version='0.3.1',
 	packages=find_packages(),
 	# Entry ponit
 	entry_points={
@@ -17,7 +17,7 @@ setup(
 	# Requirements
 	install_requires=["wget", "dateutils", "markdown",
 		"ConfigArgParse",
-		"python-redmine", "python-docx",
+		"python-redmine", "python-docx", "gitpython",
 		"pytesseract"],
 
 	package_data={
@@ -29,7 +29,7 @@ setup(
 	author_email='ondrej.profant@gmail.com',
 	description='',
 	license='Affero GNU-GPL v3',
-	keywords="bureaucracy administration ocr pdf markdown",
+	keywords="bureaucracy administration pdf git ocr markdown",
 	url='https://github.com/pirati-cz/byro/',
 
 	classifiers=[
