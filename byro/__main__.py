@@ -35,8 +35,7 @@ class App:
 		if sys.platform == "linux2" and path.exists(nautilus_scripts):
 			print("Would you like install Nautilus scripts?")
 			print("Unfortunetly not implemented yet")
-			# TODO
-
+		# TODO
 
 	def _parse_args(self):
 
@@ -57,10 +56,9 @@ class App:
 		vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
 		vyc.add('--url', help="Target Redmine url.")
 		vyc.add('-p', '--project', help="Redmine project name.")
-		vyc.add('-y', '--year', help="Values: this, last, 2014, 2015, ...")
-		vyc.add('-m', '--month',
-		        help="Values: this, last, leden, únor, ..., prosinec, 1, ..., 12. Determinate by localization.")
-		vyc.add('-u', '--user', help="Redmine user nickname or id.")
+		vyc.add('-y', '--year',  help="Values: this, last, 2014, 2015, ...")
+		vyc.add('-m', '--month', help="Values: this, last, leden, únor, ..., prosinec, 1, ..., 12. Determinate by localization.")
+		vyc.add('-u', '--user',  help="Redmine user nickname or id.")
 
 		sign = p.add_argument_group('Sign', "Digital sign of pdf file.")
 		sign.add('-k', '--sign-key', help="Path to the key.pfx")
@@ -96,7 +94,6 @@ class App:
 
 	def pdf(self):
 		convertor = Convertor(self.args.pandoc_bin)
-		# TODO: gives real filename
 		convertor.convert(self.args.inputs)
 
 	def vycetka(self):
@@ -106,6 +103,7 @@ class App:
 		# cmd = Cmd(data)
 		docx = DocX(data, self.args.out)
 		docx.show()
+
 		# cmd.show()
 
 	def sign(self):
@@ -115,9 +113,9 @@ class App:
 	def mail(self):
 
 		mail = Mail(self.args.login, self.args.frm,
-		            recipients=[self.args.recipients],
-		            body=self.args.inputs,
-		            server=self.args.server)
+			recipients=[self.args.recipients],
+			body=self.args.inputs,
+			server=self.args.server)
 		mail.send()
 
 	def ocr(self):
@@ -164,8 +162,10 @@ class App:
 		else:
 			self.arg_parser.print_help()
 
+
 def main():
 	return App().main()
+
 
 if __name__ == "__main__":
 	sys.exit(main())
