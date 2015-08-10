@@ -80,4 +80,4 @@ class Utils:
         if result == None:
           raise ValueError("Need a file with a correct extension, such as: file.md")
         else:
-          return filename.groups()
+          return result.groups()
