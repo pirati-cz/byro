@@ -7,6 +7,7 @@ Clever assistant for each bureaucrat.
 import sys
 import locale
 import shutil
+import os
 from os import path
 from byro.bredmine import BRedmine
 from byro.vycetka import (Cmd, DocX)
@@ -118,6 +119,17 @@ class App:
 			server=self.args.server)
 		mail.send()
 
+	def save(self):
+		import sh
+		sh.git("pull")
+
+		# todo soubory ze vstupu
+		sh.git("add", ".")
+
+		message = path.basename(os.getcwd())
+		sh.git("commit", "-m", message)
+		sh.git("push")
+
 	def ocr(self):
 		from PIL import Image
 		import pytesseract
@@ -157,6 +169,8 @@ class App:
 			self.sign()
 		elif c == "mail":
 			self.mail()
+		elif c == "save":
+			self.save()
 		elif c == "vycetka":
 			self.vycetka()
 		else:

@@ -17,8 +17,8 @@ setup(
 
 	# Requirements
 	install_requires=["wget", "dateutils", "markdown",
-		"ConfigArgParse",
-		"python-redmine", "python-docx", "gitpython",
+		"ConfigArgParse", "sh",
+		"python-redmine", "python-docx",
 		"pytesseract"],
 
 	package_data={
