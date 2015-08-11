@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from setuptools import (setup, find_packages)
-from byro import __version__
+from byro import (__version__, __author__, __email__, __license__, __doc__)
 
 setup(
 	# Basic
@@ -26,10 +26,11 @@ setup(
 	},
 
 	# About
-	author='Ondřej Profant, Jakub Michálek',
-	author_email='ondrej.profant@gmail.com',
-	description='',
-	license='Affero GNU-GPL v3',
+	author=str(__author__),
+	author_email=__email__,
+	description='Bureaucracy assistant',
+	license=__license__,
+	long_description=__doc__,
 	keywords="bureaucracy administration pdf git ocr markdown",
 	url='https://github.com/pirati-cz/byro/',
 
