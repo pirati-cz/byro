@@ -75,4 +75,9 @@ class Utils:
     @staticmethod
     def split_filename(filename):
         pattern = '(.*)(\.[a-zA-Z]{2,3})'
-        return re.search(pattern, filename).groups()
+        result = re.search(pattern, filename)
+
+        if result == None:
+          raise ValueError("Need a file with a correct extension, such as: file.md")
+        else:
+          return result.groups()

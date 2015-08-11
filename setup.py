@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 from setuptools import (setup, find_packages)
 from byro import (__version__, __author__, __email__, __license__, __doc__)
