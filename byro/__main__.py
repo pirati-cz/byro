@@ -43,7 +43,7 @@ class App:
 
 		p = ByroParse(
 			subcommands,
-			default_config_files=[self.user_confg, self.default_config],
+			default_config_files=[self.default_config, self.user_confg],
 			description=__doc__,
 			epilog=str(__author__)
 		)
