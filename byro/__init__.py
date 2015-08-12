@@ -5,8 +5,14 @@
 Bureaucracy assistant.
 
 From open source components create tool for every office work:
+
 * ocr
-*
+* pdf prepared from markdown
+* integration with git repository
+* mass mail
+* preparation of vycetka
+
+Basicaly it is only a wrraper over some handy open source tools like Pandoc, Tesseract, git.
 """
 
 __author__ = "Ondřej Profant"

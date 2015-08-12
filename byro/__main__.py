@@ -126,7 +126,7 @@ class App:
 		# todo soubory ze vstupu
 		sh.git("add", ".")
 
-		message = path.basename(os.getcwd())
+		message = "Spis: " + path.basename(os.getcwd())
 		sh.git("commit", "-m", message)
 		sh.git("push")
 
