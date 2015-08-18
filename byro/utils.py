@@ -28,7 +28,7 @@ class Utils:
 		elif month == 'last':
 			delta = relativedelta(months=-1)
 			monthNum = datetime.date.today().month - 1
-			# todo year break
+		# todo year break
 		elif Utils.is_int(month):
 			monthNum = int(month)
 		else:
@@ -86,12 +86,11 @@ class Utils:
 def ocr(inputs, out=None, lang="eng"):
 	from PIL import Image
 	import pytesseract
+	tess = pytesseract.image_to_string
 	text = ""
 	for file in inputs:
 		try:
-			with open(file) as f:
-				img = Image.open(f)
-				text += pytesseract.image_to_string(img, lang=lang)
+			text += tess(Image.open(file), lang=lang)
 		except OSError:
 			print("Only image can be OCR. For pdf use:\npdftocairo -jpeg <file>.pdf")
 			exit()
