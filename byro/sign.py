@@ -51,8 +51,11 @@ class PdfSign:
             print("Cesta k JsignPdf není správná. Cesta: %s" % command, file=sys.stderr)
             exit()
 
-        if not os.path.isfile(self.key):
-            print("Cesta k podpisovému klíči není správná. Cesta: %s" % self.key, file=sys.stderr)
+        try:
+            if not os.path.isfile(self.key):
+               raise FileExistsError
+        except (TypeError, FileExistsError):
+            print("Cesta k podpisovému klíči není správná. Definujete jí parametrem -k <cesta>. Zadaná cesta: %s" % self.key, file=sys.stderr)
             exit()
 
     def sign(self, filenames):
