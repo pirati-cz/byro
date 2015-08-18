@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import locale
 from setuptools import (setup, find_packages)
 from byro import (__version__, __author__, __email__, __license__, __doc__)
+
+locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
 setup(
 	# Basic
