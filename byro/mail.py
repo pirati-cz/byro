@@ -91,5 +91,13 @@ class Mail:
 
         return {'raw': text1, 'html': text2, 'meta': md.Meta}
 
+
+def mail_wrapper(args):
+    mail = Mail(args.login, args.frm,
+			recipients=[args.recipients],
+			body=args.inputs,
+			server=args.server)
+    mail.send()
+
 if __name__ == "__main__":
     pass

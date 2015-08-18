@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
 # -*- encoding: utf-8 -*-
 """
-Clever assistant for each bureaucrat.
+See __init__.py.__doc__
 """
 
 import sys
 import locale
 import shutil
-import os
 from os import path
-from byro.bredmine import BRedmine
-from byro.vycetka import (Cmd, DocX)
+from byro.vycetka import vycetka_wrapper
 from byro.sign import PdfSign
 from byro.convertor import Convertor
 from byro.configargparse import ByroParse
-from byro.mail import Mail
+from byro.mail import mail_wrapper
+from byro.utils import (ocr, save)
+from byro import (__author__)
 
-__author__ = ['Ondřej Profant', 'Jakub Michálek']
 __dir__ = path.realpath(path.dirname(__file__))
 
 
@@ -81,6 +80,8 @@ class App:
 		mail.add("--server", help="Email server")
 		mail.add("--port", help="Port")
 
+		ocr = p.add_argument_group("ocr", "OCR images: byro -o <text>.txt file1.jpg file2.jpg")
+
 		ds = p.add_argument_group('Ds')
 		ds.add('--ds-id', help="")
 
@@ -98,54 +99,21 @@ class App:
 		convertor.convert(self.args.inputs)
 
 	def vycetka(self):
-		redmine = BRedmine(self.args.user, self.args.url, self.args.project, self.args.month)
-		data = redmine.get_data()
-		# data.export_to_bin_file("data-6-OP.p")
-		# cmd = Cmd(data)
-		docx = DocX(data, self.args.out)
-		docx.show()
-
-		# cmd.show()
+		vycetka_wrapper(self.args)
 
 	def sign(self):
 		sign = PdfSign(self.args.sign_bin, self.args.sign_key)
 		sign.sign(self.args.inputs)
 
 	def mail(self):
-
-		mail = Mail(self.args.login, self.args.frm,
-			recipients=[self.args.recipients],
-			body=self.args.inputs,
-			server=self.args.server)
-		mail.send()
+		mail_wrapper(self.args)
 
 	def save(self):
-		import sh
-		sh.git("pull")
-
-		# todo soubory ze vstupu
-		sh.git("add", ".")
-
-		message = "Spis: " + path.basename(os.getcwd())
-		sh.git("commit", "-m", message)
-		sh.git("push")
+		save()
 
 	def ocr(self):
-		from PIL import Image
-		import pytesseract
-		text = ""
-		for file in self.args.inputs:
-			try:
-				img = Image.open(file)
-			except OSError:
-				print("Only image can be OCR. For pdf use:\npdftocairo -jpeg <file>.pdf")
-				exit()
-			text += pytesseract.image_to_string(img, lang="ces")
-
-		if self.args.out:
-			with open(self.args.out, "w") as f:
-				f.write(text)
-		else:
+		text=ocr(self.args.inputs, self.args.out)
+		if not self.args.out:
 			print(text)
 
 	def args_test(self):

@@ -5,6 +5,8 @@ import datetime
 from .bredmine import Utils
 from docx import Document
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+from byro.bredmine import BRedmine
+
 
 
 class Output:
@@ -139,3 +141,14 @@ class DocX(Output):
 		r1[5].text = 'Poznámka'
 		r2[3].text = 'celkem'
 		r2[4].text = 'k náhradě'
+
+
+def vycetka_wrapper(args):
+	redmine = BRedmine(args.user, args.url, args.project, args.month)
+	data = redmine.get_data()
+	# data.export_to_bin_file("data-6-OP.p")
+	# cmd = Cmd(data)
+	docx = DocX(data, args.out)
+	docx.show()
+
+	# cmd.show()

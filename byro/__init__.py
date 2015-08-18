@@ -15,8 +15,8 @@ From open source components create tool for every office work:
 Basicaly it is only a wrraper over some handy open source tools like Pandoc, Tesseract, git.
 """
 
-__author__ = "Ondřej Profant"
-__copyright__ = "Copyright 2015, Ondřej Profant"
+__author__ = "Ondřej Profant, Jakub Michálek"
+__copyright__ = "Copyright 2015, Ondřej Profant, Jakub Michálek"
 __credits__ = ["Ondřej Profant"]
 __license__ = "Affero GNU-GPL v3"
 __version__ = "0.4.0"
