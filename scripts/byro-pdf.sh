@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 # Sází dopis z markdownové šablony
 #
 # Autoři:

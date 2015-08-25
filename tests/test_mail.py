@@ -15,7 +15,7 @@ class Recipients(unittest.TestCase):
         body = [get_test_files_dir() + "simple-body.md"]
         mail = ["john.doe@example.com"]
         m = Mail("", "", body=body, recipients=mail)
-        expected = [[mail]]
+        expected = [mail]
         self.assertEqual(m.recipients, expected)
 
     def test_recipients_file(self):

@@ -15,7 +15,7 @@ texlive texlive-collection-langczechslovak texlive-collection-mathextra texlive-
 texlive-xetex texlive-xetex-def texlive-xltxtra \
 pandoc libreoffice
 ```
-(~ 200 MB)
+(~ 212 MB download, ~ 514 MB installed)
 
 
 ### Ubuntu 14.04 LTS
@@ -41,42 +41,24 @@ Other dependency that are not present in repository:
 * [jSignPdf][signHP], [download][signDownload]: in roadmap is automatic installation
 
 
-Python dependency
------------------
+Install
+-------
+
+Once you have all OS dependencies installed, you can run following command:
 
 ```bash
 sudo pip3 install --upgrade pip  
-sudo pip3 install wget dateutils markdown ConfigArgParse python-redmine python-docx pytesseract
+sudo pip3 install git+https://github.com/pirati-cz/byro 
 ```
 
-
-Install Byro itself
--------------------
-
-```bash
-cd <path-to-repo>
-git clone https://github.com/pirati-cz/byro
-cd byro
-git checkout `git for-each-ref --sort='*authordate' --format='%(tag)' refs/tags`
-cp files/config-example.ini files/config.ini
-python3 -m unittest discover
-```
-
-Path to repo is directory where repository is cloned. For example `/opt/`.
-
-Last command launch unit tests. If all pass everything is ok.
-
-For simple using, create alias: 
-
-```bash
-alias byro="$PWD/byro.py"
-```
+Then just run `byro`!
 
 ### Config file
 
-Important parameters are in config file: `files/config.ini`
+Important parameters are in config file: `byro/resource/config.ini`.
+After first run is created `$HOME/.byro.ini`.
 
-Args that start with '--' (eg. --config)
+Generaly args that start with '--' (eg. --config)
 can also be set in a config file (files/config.ini or specified via -c) by
 using .ini or .yaml-style syntax (eg. config=value). If an arg is specified in
 more than one place, then command-line values override config file values
@@ -84,36 +66,29 @@ which override defaults.
 
 ### Tests
 
-Classic unit tests:
+Unit tests run:
 
 ```
-python3 -m unittest discover
+python3 -m unittest
 ```
 
-For more detail add `-v`.
+For more details add `-v`.
 
 ### Update
 
-For newest repository version: 
+Update already installed instance: 
 
 ```bash
-cd <path-to-repo>
-git pull
-```
-
-Or for newest stable release:
-
-```bash
-cd <path-to-repo>
-git pull
-git checkout `git for-each-ref --sort='*authordate' --format='%(tag)' refs/tags`
+pip3 install --upgrade byro
 ```
 
 ### Remove
 
+Remove from os:
+
 ```
-unalias byro
-rm -rf <path-to-repo>
+pip3 uninstall byro
+[rm ~/.byro.ini]
 ```
 
 Using

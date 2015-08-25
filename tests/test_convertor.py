@@ -26,7 +26,7 @@ class Convert(unittest.TestCase):
             returned = Convertor.output_name(names)
 
     def test_convertor_convert(self):
-        pandoc = Convertor()
+        pandoc = Convertor("pandoc")
         path = get_test_files_dir()
         filename = [path + 'simple-body.md']
         expected = path + 'simple-body.pdf'
