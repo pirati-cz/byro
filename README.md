@@ -11,6 +11,8 @@ Pomocník na byrokracii Byro
 **Tenhle cvičený opičák za vás rád udělá byrokracii,
 kterou byste ztratili hodiny práce.** 
 
+![Travis-CI](https://travis-ci.org/pirati-cz/byro.svg) ![Scrutinizer](https://scrutinizer-ci.com/g/pirati-cz/byro/badges/quality-score.png?b=master)
+
 ![Maskot programu Byro](files/mascot.png)
 
 ----
