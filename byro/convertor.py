@@ -20,6 +20,7 @@ class ValueErrorPdf(ValueError):
 
 
 class Convertor:
+
     def __init__(self, bin):
         self.bin = bin
         self.params = ["--smart"]
