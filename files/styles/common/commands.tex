@@ -1,6 +1,6 @@
 % this file contains the abbreviations and definitions of commands that can be used by all templates
 
-
+%\renewcommand{\contentsname}{Obsah}
 
 \newcommand{\polozka}[2]{
 \begin{minipage}[t]{0.3\columnwidth}%
@@ -43,6 +43,10 @@
 }
 
 % Definice textů hlavičky
+
+
+
+
 \def\yoursignlabel{\small Odpověď na Váš dopis}
 \def\yourdatelabel{\small ze dne}
 \def\oursignlabel{\small Naše značka}
@@ -86,8 +90,9 @@
 
 \newcommand{\udaj}[3]{%
 \begin{minipage}[t]{#3\linewidth}%
-#1 \\ 
+\ifthenelse{\equal{#2}{}}{\hfill\vspace{0.5mm}}{#1 \\ 
 \normalsize\rmfamily #2%
+}
 \end{minipage}}
 
 \newcommand{\reasons}{%
@@ -105,6 +110,11 @@ Odůvodnění:
 \udaj{\oursignlabel}{\oursign}{0.20}%
 \udaj{\place}{\csdatum\ourdate}{0.20}}
 
+\newcommand{\pointarrow}{\raisebox{-0.4ex}{\rotatebox[origin=c]{90}{$\Lsh$}}}
+
+\newcommand{\reminder}{
+
+\hspace*{0.6\linewidth}{ \pointarrow} \small uvádějte na všech dokumentech \normalsize}
 
 \newcommand{\attachments}[1]{%
 \attachmentlabel 

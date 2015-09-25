@@ -1,5 +1,5 @@
 ---
-title:      Podnět zastupitele hl. m. Prahy k vyvěšení duhové vlajky 
+title:      Oznámení o zahájení kontroly poskytování informací
 author:
    name:    Jakub Michálek
    phone:   +420 775 978 550
@@ -7,56 +7,85 @@ author:
    mail:    jakub.michalek@praha.eu
 our:
    name:    Zastupitelský klub Pirátů
-   sign:    ZK Pha 93/2015
+   sign:    ZK Pha 95/2015
 your:
-   role:    Povinný subjekt
+   role:    Kontrolovaný
    name:
-      -     Hlavní město Praha
-      -     Adriana Krnáčová, primátorka
+      -     Magistrát hl. m. Prahy
+      -     odbor školství a mládeže
    address:
       -     Mariánské náměstí 2/2
       -     110 01 Praha 1
+   note:
+      -     k rukám ředitelky 
+      -     Mgr. Lenky Němcové
    ds:      48ia97h
    sign:
-   date:    20. 5. 2012
+   date:    
 sendby:     ds
 style:      letter
+# reminder:   true
 ---
 
-Vážená paní primátorko,
+Vážená paní ředitelko,
 
-Prahou dne 15. 8. 2015 projde průvod **Prague Pride** zaměřený na LGBT tématiku.
-Tématem letošního, již 5. ročníku, je motto: *Stejně jsme všichni teplí*.
-Festival má za cíl upozorňovat na to, co je pro lidi společné, bez ohledu
-na sexuální orientaci. Pochod je jen jednou z částí festivalu.
+na základě usnesení kontrolního výboru Zastupitelstva hl. m. Prahy č. 07/08/2015
+ze dne 10. 6. 2015 (viz přiložené pověření) zahajuji kontrolu výkonu 
+samostatné působnosti Magistrátu hl. m. Prahy, odboru školství a mládeže, 
+ve věci poskytování informací o výši platů a odměn ředitelů mateřských škol
+žadateli Janu Lukešovi na jeho žádost v řízení po vydání 
+rozhodnutí Ministerstva vnitra ze dne 3. 3. 2015, č. j. 14976-108/ODK-2013.
+Kopii předmětného rozhodnutí Ministerstva vnitra zasílám v příloze.
 
-V souladu s § 51 odst. 3 písm. b) zákona č. 131/2000 Sb., o hlavním městě Praze, 
-ve znění pozdějších předpisů, Vám zasílám následující podnět:
+Podle § 78 odst. 5 písm. b), 7 a 8 zákona č. 131/2000 Sb., o hlavním městě Praze,
+kontrolní výbor kontroluje dodržování právních předpisů Magistrátem hlavního 
+města Prahy na úseku samostatné působnosti. O provedené kontrole výbor pořídí 
+zápis, který obsahuje předmět kontroly, jaké nedostatky byly zjištěny a 
+návrhy opatření směřující k odstranění nedostatků. Zápis podepisuje člen 
+výboru a zaměstnanec, jehož činnosti se kontrola týkala. Výbor předloží zápis 
+zastupitelstvu hlavního města Prahy; k zápisu připojí vyjádření orgánu, 
+popřípadě zaměstnanců, jejichž činnosti se kontrola týkala. Poučení ke způsobu
+provádění kontroly připojuji v metodickém materiálu Ministerstva vnitra o činnosti výborů
+zastupitelstva obcí, které je na tento případ plně použitelné.
 
-Navrhuji, aby Hlavní město Praha podpořilo konání festivalu vyvěšením duhové vlajky
-na budovách Magistrátu hl. m. Prahy v Jungmannově ulici a na Nové radnici.
-Je třeba si uvědomit, že vyvěšení duhové vlajky je rovněž signál pro zaměstnance, 
-že hlavní město Praha je zaměstnavatel, který se hlásí k rovnému zacházení a
-nebude své zaměstnance kádrovat kvůli sexuální orientaci nebo jiným diskriminačním
-znakům.
+Podle § 15 odst. 1 zákona č. 101/2000 Sb., o ochraně osobních údajů, je osoba, 
+která v rámci plnění zákonem stanoveného oprávnění přichází do styku s osobními 
+údaji u správce nebo zpracovatele, povinna zachovávat mlčenlivost o osobních 
+údajích a o bezpečnostních opatřeních, jejichž zveřejnění by ohrozilo 
+zabezpečení osobních údajů. Povinnost mlčenlivosti trvá i po skončení 
+zaměstnání nebo příslušných prací. V případě kontroly jde o distribuci údajů
+v rámci právnické osoby a jejich vnitřních kontrolních mechanismů, k nimž není 
+třeba souhlasu subjektu údajů. Podle zákona § 38 odst. 2 zákona č. 500/2004 Sb., 
+správního řádu, jiným osobám správní orgán umožní nahlédnout do spisu, 
+prokáží-li právní zájem nebo jiný vážný důvod a nebude-li tím porušeno právo 
+některého z účastníků, popřípadě dalších dotčených osob anebo veřejný zájem.
+V daném případě je prováděna kontrola na základě zákona z pověření k tomu 
+příslušného orgánu zastupitelstva v návaznosti na podnět
+účastníka řízení, a tedy je i dáno oprávnění kontrolujícího nahlížet do spisu.
 
-Vyslovuji za zastupitelský klub Pirátů také podporu tomu, aby primátorka převzala nad akcí záštitu,
-požádá-li o ni organizátor. Akce je v Praze již tradiční a osobně jsme se ji 
-podpořili. Podobné akce patří ke koloritu západních metropolí, které svou 
-identitu zakládají na tom, že se mohou radovat z rozmanitosti obyvatel, a na
-jejich vzájemném mírumilovném soužití.
+V návaznosti na citované ustanovení zákona o hlavním městě Praze proběhne výše
+uvedená kontrola vyžádáním spisu k předmětné věci. Po seznámení se spisem 
+bude kontrolovaný požádán o vyjasnění zbývajících otázek. Tímto postupem vznikne
+zápis pro kontrolní výbor, ke kterému bude moci kontrolovaný připojit své vyjádření. 
 
-Rovněž s přihlédnutím k posledním událostem, kdy i Nejvyšší soud Spojených států 
-amerických potvrdil právo na sňatek pro osoby stejného pohlaví za základní právo, 
-považujeme za správné podpořit myšlenku rovnosti lidí bez ohledu na původ či sexuální orientaci,
-jak je zakotvuje Listina základních práv a svobod.
+**Žádám Vás tímto zdvořile o předložení 
+originálu nebo kopie spisu ve výše uvedené věci za účelem provedení kontroly
+výkonu samostatné působnosti.** 
 
-S pozdravem 
+Písemnosti prosím doručujte v listinné podobě k mým rukám v budově Nové radnice, případně
+do místnosti klubu č. 40 v přízemí, v elektronické podobě do výše uvedené datové
+schránky.
+
+S pozdravem
 
 ---
 signature:
   - Mgr. Bc. Jakub Michálek
-  - předseda klubu Pirátů
-  - zastupitelstvo hl. m. Prahy
+  - pověřený člen kontrolního výboru
+  - Zastupitelstva hl. m. Prahy
 abbr:       jakub
+attachments:
+  - Pověření k výkonu kontroly podepsané JUDr. Jaroslavou Janderovou
+  - Rozhodnutí Ministerstva vnitra ze dne 3. 3. 2015, č. j. 14976-108/ODK-2013
+  - Metodika Ministerstva vnitra k výkonu působnosti kontrolního výboru
 ...

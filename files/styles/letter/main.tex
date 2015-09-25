@@ -3,7 +3,6 @@
 
 \input{./files/styles/common/header.tex}
 
-
 \def \myds {$if(author.ds)$$author.ds$$else$b2i4r6j$endif$}
 \def \myphone {$if(author.phone)$$author.phone$$else$+420 775 978 550$endif$}
 \def \mymail {$if(author.mail)$$author.mail$$else$info@pirati.cz$endif$}
@@ -14,7 +13,7 @@
 \def \place {$if(our.place)$$our.place$$else$Praha$endif$}
 
 \renewcommand{\maketitle}{
-
+$if(your.name)$
 \recipient[$your.role$]{$for(your.name)$$your.name$$sep$\\$endfor$ \\ $for(your.address)$$your.address$ $sep$\\$endfor$
 $if(your.ds)$
 
@@ -26,11 +25,15 @@ $if(your.note)$
 \bigskip%
 $endif$$for(your.note)$$your.note$ $sep$\\$endfor$}
 
-\bigskip
+\bigskip$endif$
+$if(reminder)$\reminder$endif$
+
 \printheader
+
 
 \subject{$title$}
 }
+
 \AtEndDocument{\signature{$for(signature)$$signature$$sep$\\$endfor$}
 $if(attachments)$
 

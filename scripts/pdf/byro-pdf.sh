@@ -169,4 +169,4 @@ fi;
 
 md2pdfMulti "$@";
 
-# cleanUpSymlink;
+cleanUpSymlink;

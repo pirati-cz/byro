@@ -1,0 +1,93 @@
+\usepackage[margin=2.5cm,footskip=1cm,bottom=4cm,top=4cm]{geometry}
+\usepackage{titling}
+
+% nastavení fontů
+\setmainfont[
+    Path = files/fonts/LiberationSans/,
+    Ligatures=TeX,
+    UprightFont = *-Regular,
+    BoldFont=*-Bold.ttf,
+    ItalicFont=*-Italic.ttf,
+    BoldItalicFont=*-BoldItalic]{LiberationSans}
+\setmonofont[
+    Path = files/fonts/LiberationSans/,
+    Ligatures=TeX,
+    UprightFont = *-Regular,
+    BoldFont=*-Bold.ttf,
+    ItalicFont=*-Italic.ttf,
+    BoldItalicFont=*-BoldItalic]{LiberationSans}
+\newfontface\headingfont[
+    Path = files/fonts/PoliticsHead/]{PoliticsHead-Bold.otf}
+% pozor, v další aktualizaci fontspecu dojde k prohození pořadí
+
+\def \myds {b2i4r6j}
+\def \myphone {+420\,775\,978\,550}
+\def \mymail {info@pirati.cz}
+
+% Pozadí stránky
+\usepackage{wallpaper}
+\usepackage{fancyhdr}
+\fancypagestyle{mypagestyle}{%
+  \fancyhf{}% Clear header/footer
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\small Česká pirátská strana $\bullet$ Řehořova 19, Praha 3 $\bullet$ IČO 71339698 $\bullet$ Web \url{http://praha.pirati.cz} \\
+Tel. {\myphone} $\bullet$ E-mail \href{mailto:\mymail}{\mymail} $\bullet$ Datová schránka \uline{\myds} \\
+Transparentní účet 2100048174/2010}% Your logo/image
+}
+
+\fancypagestyle{empty}{%
+
+  \fancyhf{}% Clear header/footer
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\thepage}% Your logo/image
+}
+\pagestyle{empty}
+
+% první stránka obsahuje pozadí
+\AtBeginDocument
+{
+   \thispagestyle{mypagestyle}
+   \ThisULCornerWallPaper{1}{files/styles/pirati/pozadi.pdf}
+}
+
+% Titulek
+
+\renewcommand{\title}[1]{
+\vspace*{0.3cm}
+\linespread{2}
+{\begin{flushleft}
+ \fontsize{2cm}{1.5em}\selectfont\headingfont 
+ \renewcommand{\baselineskip}{4em}
+ #1 \par
+\end{flushleft}}
+
+\hypersetup{
+    pdftitle={#1},
+    pdfauthor={Česká pirátská strana},
+    hidelinks=true,
+    pdfborder={0 0 0}
+}
+}
+
+% font declaration and title settings
+\newfontface\headingfont[
+    Path = files/fonts/PoliticsHead/]{PoliticsHead-Bold.otf}
+\titleformat*{\section}
+  {\newpage\fontsize{1.5cm}{1.5em}\selectfont\headingfont}
+\titleformat*{\subsection}{\Large\headingfont}
+\renewcommand{\maketitlehooka}{\headingfont}
+
+%obrázky
+\usepackage{letltxmacro}
+\usepackage[export]{adjustbox}
+\LetLtxMacro{\OldIncludegraphics}{\includegraphics}
+\renewcommand{\includegraphics}[2][]{\OldIncludegraphics[width=0.8\textwidth,left, #1]{#2}}
+\usepackage[labelformat=empty, textformat=simple, justification=RaggedRight, format=plain, singlelinecheck=false]{caption}
+
+\usepackage{float}
+\floatplacement{figure}{H}
+
+
+%%%%%%%%%%% DEFINOVÁNÍ STYLŮ %%%%%%%%%%%%%%%%%
+\usepackage{enumerate}
+% \renewcommand{\labelitemi}{$-$}
