@@ -96,7 +96,7 @@ class App:
 
 	def pdf(self):
 		convertor = Convertor(self.args.pandoc_bin)
-		convertor.convert(self.args.inputs)
+		convertor.convert(self.args.inputs, self.args.template, self.args.out)
 
 	def vycetka(self):
 		vycetka_wrapper(self.args)
