@@ -5,7 +5,7 @@ from byro.utils import Utils
 
 _pandoc_can_convert = [".md", ".mkd"]
 _lo_can_convert = [".docx", ".doc", ".xls", ".xlsx", ".odt", ".odp"]
-
+__dir__ = os.path.realpath(os.path.dirname(__file__))
 
 class ValueErrorLO(ValueError):
 	"""
@@ -64,8 +64,19 @@ class Convertor:
 					   "-t", "latex"]
 
 			if template:
-				command.append("--template=" + template)
-				print("pridano")
+				if template == 'none':
+					# default template
+					pass
+				elif template == 'letter':
+					path = os.path.join(__dir__, 'resource', 'style', 'letter', 'main.tex')
+					command.append("--template=" + path)
+				elif template == 'brochure':
+					# todo template itself
+					pass
+				elif os.path.exists(template):
+					command.append("--template=" + template)
+
+
 
 			command += ["-o", output] + inputs
 
