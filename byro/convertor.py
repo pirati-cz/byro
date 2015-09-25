@@ -7,6 +7,7 @@ _pandoc_can_convert = [".md", ".mkd"]
 _lo_can_convert = [".docx", ".doc", ".xls", ".xlsx", ".odt", ".odp"]
 __dir__ = os.path.realpath(os.path.dirname(__file__))
 
+
 class ValueErrorLO(ValueError):
 	"""
 	File extensions that cannot be converted by Pandoc,
@@ -68,7 +69,7 @@ class Convertor:
 					# default template
 					pass
 				elif template == 'letter':
-					path = os.path.join(__dir__, 'resource', 'style', 'letter', 'main.tex')
+					path = os.path.join(__dir__, 'resource', "styles", 'letter', 'main.tex')
 					command.append("--template=" + path)
 				elif template == 'brochure':
 					# todo template itself
