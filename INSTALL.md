@@ -13,7 +13,7 @@ Package from repository in most common Linux distributions.
 sudo dnf install gcc python3 python3-pip git tesseract tesseract-langpack-ces poppler-utils \
 texlive texlive-collection-langczechslovak texlive-collection-mathextra texlive-mathspec texlive-euenc \
 texlive-xetex texlive-xetex-def texlive-xltxtra \
-pandoc libreoffice
+pandoc libreoffice gnuplot
 ```
 (~ 212 MB download, ~ 514 MB installed)
 
@@ -23,7 +23,7 @@ pandoc libreoffice
 ```bash
 sudo apt-get install gcc python3 python3-pip git pandoc libreoffice \
 tesseract-ocr tesseract-ocr-ces poppler-utils \
-texlive texlive-lang-czechslovak texlive-xetex texlive-latex-extra
+texlive texlive-lang-czechslovak texlive-xetex texlive-latex-extra gnuplot
 ```
 (~ 1 GB)
 
@@ -47,7 +47,6 @@ Install
 Once you have all OS dependencies installed, you can run following command:
 
 ```bash
-sudo pip3 install --upgrade pip  
 sudo pip3 install git+https://github.com/pirati-cz/byro 
 ```
 

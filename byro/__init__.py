@@ -12,16 +12,16 @@ From open source components create tool for every office work:
 * mass mail
 * preparation of vycetka
 
-Basicaly it is only a wrraper over some handy open source tools like Pandoc, Tesseract, git.
+Basically it is only a wrapper over some handy open source tools like Pandoc, Tesseract, git, Redmine API and LaTeX.
 """
 
-__author__ = "Ondřej Profant, Jakub Michálek"
-__copyright__ = "Copyright 2015, Ondřej Profant, Jakub Michálek"
-__credits__ = ["Ondřej Profant"]
+__version__ = "0.5.5"
+__status__ = "Alpha"
 __license__ = "Affero GNU-GPL v3"
-__version__ = "0.5.4"
+__author__ = "Ondřej Profant, Jakub Michálek"
+__credits__ = ["Ondřej Profant", "Jakub Michálek"]
+__copyright__ = "Copyright 2015, Ondřej Profant, Jakub Michálek"
 __maintainer__ = "Ondřej Profant"
 __email__ = "ondrej.profant@gmal.com"
-__status__ = "Alpha"
 
-__all__ = ["bredmine", "configargparse", "mail", "pandoc", "sign", "utils", "vycetka"]
+__all__ = ["bredmine", "configargparse", "mail", "pandoc", "sign", "utils", "vycetka", "converter"]
