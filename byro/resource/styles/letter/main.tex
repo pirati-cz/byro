@@ -1,7 +1,7 @@
 % CUSTOMIZED CODE
 \documentclass[$if(fontsize)$$fontsize$,$else$11pt,$endif$$if(lang)$$lang$,$else$czech,$endif$$if(papersize)$$papersize$,$else$a4paper,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$if(documentclass)$$documentclass$$else$article$endif$}
 
-\input{./files/styles/common/header.tex}
+\input{common/header.tex}
 
 \def \myds {$if(author.ds)$$author.ds$$else$b2i4r6j$endif$}
 \def \myphone {$if(author.phone)$$author.phone$$else$+420 775 978 550$endif$}
@@ -216,7 +216,7 @@ $endfor$
 \fi
 
 % CUSTOMIZED CODE
-\input{./files/styles/$style$/header.tex}
+\input{$style$/header.tex}
 % END OF CUSTOMIZED CODE
 
 \begin{document}
