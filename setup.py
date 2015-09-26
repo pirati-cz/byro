@@ -27,6 +27,7 @@ setup(
 
 	package_data={
 		'byro': ['resource/*.ini',
+		         'resource/*.png',
 		         'resource/styles/letter/*.tex',
 		         'resource/styles/letter/*.pdf']
 	},

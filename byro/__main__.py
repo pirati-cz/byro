@@ -10,7 +10,7 @@ import shutil
 from os import path
 from byro.vycetka import vycetka_wrapper
 from byro.sign import PdfSign
-from byro.convertor import Convertor
+from byro.converter import Converter
 from byro.configargparse import ByroParse
 from byro.mail import mail_wrapper
 from byro.utils import (ocr, save)
@@ -95,7 +95,7 @@ class App:
 		locale.setlocale(locale.LC_ALL, self.args.locale)
 
 	def pdf(self):
-		convertor = Convertor(self.args.pandoc_bin)
+		convertor = Converter(self.args.pandoc_bin)
 		convertor.convert(self.args.inputs, self.args.template, self.args.out)
 
 	def vycetka(self):
