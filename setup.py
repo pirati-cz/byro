@@ -26,7 +26,10 @@ setup(
 		"pytesseract"],
 
 	package_data={
-		'byro': ['resource/*']
+		'byro': ['resource/*.ini',
+		         'resource/*.png',
+		         'resource/styles/letter/*.tex',
+		         'resource/styles/letter/*.pdf']
 	},
 
 	# About
