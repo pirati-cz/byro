@@ -82,7 +82,7 @@ function prepareSymlink() {
 
   locateScriptDir;
 
-  ln -s "$DIR/../files/" files;
+  ln -s "$DIR/../../files/" files;
 }
 
 function cleanUpSymlink() {

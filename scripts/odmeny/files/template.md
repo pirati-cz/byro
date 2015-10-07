@@ -5,12 +5,18 @@ Tento výkaz shrnuje základní informace pro odměňování zastupitele hl. m. 
 za Česou pirátskou stranu. Je sestaven podle [metodiky odměňování][metodika]
 a předkládá se předsednictvu krajského sdružení.
 
+U všech údajů jsou uvedeny odkazy do projektového systému 
+[redmine](https://redmine.pirati.cz). Některé úkoly v tomto systému mohou být 
+neveřejné. Tyto úkoly se vám po přihlášení nezobrazí, pokud nemáte potřebná 
+oprávnění. Podmínky utajení a zveřejnění upravuje 
+[metodika odměňování][metodika]. 
+
 Časově náročné úkoly
 ----------------------
 
 Následující tabulka uvádí všechny úkoly v daném měsíci, u kterých čas přesáhl
 3 hodiny. Do této tabulky může zastupitel doplnit další významné splněné úkoly
-nebo aktivity.
+nebo aktivity. U neveřejných úkolů uvádíme jen číslo úkolu a počet hodin.
 
 TMPTASKS
 
@@ -19,7 +25,9 @@ Můžete si zobrazit plný [přehled plněných úkolů][tasklist].
 Měřitelné ukazatele
 -------------------
 
-U všech údajů jsou uvedeny odkazy do projektového systému [redmine](https://redmine.pirati.cz). Některé údaje v tomto systému mohou být neveřejné, proto se bez přihlášení může zobrazit menší počet hodin.
+Následující tabulka obsahuje měřitelné ukazatele za všechny úkoly v daném měsíci
+včetně neveřejných úkolů. Proto mohou být hodiny v ní vyšší než se vám bez 
+přihlášení zobrazí v projektovém systému.
 
 Rozsah činnosti                        | Počet hodin
 --------------                         | ----------:
