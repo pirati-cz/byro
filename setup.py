@@ -28,6 +28,9 @@ setup(
 	package_data={
 		'byro': ['resource/*.ini',
 		         'resource/*.png',
+		         'resource/styles/fonts/LiberationSans/*ttf',
+		         'resource/styles/fonts/Nina/*ttf',
+		         'resource/styles/fonts/PoliticsHead/*ttf',
 		         'resource/styles/common/*.tex',
 		         'resource/styles/letter/*.tex',
 		         'resource/styles/letter/*.pdf']
