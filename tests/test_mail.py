@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
-from os.path import join
-from os.path import realpath
-from os.path import dirname
 import unittest
+from os.path import join, realpath, dirname
 from byro.mail import Mail
 
 

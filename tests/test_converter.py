@@ -28,14 +28,14 @@ class Convert(unittest.TestCase):
 
 	def test_prepare_command_1(self):
 		converter = Converter("pandoc")
-		returned = converter._prepare_command(["meta.md", "text.md"], "/tmp/template.tex", "text.pdf")
+		returned = converter._prepare_command(["meta.md", "text.md"], "/tmp/letter2.tex", "text.pdf")
 		expected = ["pandoc", "--smart", "-f", "markdown", "-t", "latex", "-o",
 		            realpath("text.pdf"), "--latex-engine=xelatex", "meta.md", "text.md"]
 		self.assertEqual(returned, expected)
 
 	def test_prepare_command_2(self):
 		converter = Converter("pandoc")
-		returned = converter._prepare_command(["meta.md", "text.md"], "/tmp/template.tex")
+		returned = converter._prepare_command(["meta.md", "text.md"], "/tmp/letter2.tex")
 		expected = ["pandoc", "--smart", "-f", "markdown", "-t", "latex", "-o",
 					realpath("meta.pdf"), "--latex-engine=xelatex", "meta.md", "text.md"]
 		self.assertEqual(returned, expected)

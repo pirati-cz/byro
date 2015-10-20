@@ -13,7 +13,7 @@ from byro.sign import PdfSign
 from byro.converter import Converter
 from byro.configargparse import ByroParse
 from byro.mail import mail_wrapper
-from byro.utils import (ocr, save)
+from byro.utils import (ocr as ocr_wrapper, save)
 from byro import (__author__)
 
 __dir__ = path.realpath(path.dirname(__file__))
@@ -80,7 +80,7 @@ class App:
 		mail.add("--server", help="Email server")
 		mail.add("--port", help="Port")
 
-		ocr = p.add_argument_group("ocr", "OCR images: byro -o <text>.txt file1.jpg file2.jpg")
+		ocr = p.add_argument_group("Ocr", "OCR images: byro -o <text>.txt file1.jpg file2.jpg")
 
 		ds = p.add_argument_group('Ds')
 		ds.add('--ds-id', help="")
@@ -112,7 +112,9 @@ class App:
 		save()
 
 	def ocr(self):
-		text=ocr(self.args.inputs, self.args.out)
+		# TODO: lang from locale
+		lang = "ces" # or eng
+		text = ocr_wrapper(self.args.inputs, self.args.out, lang)
 		if not self.args.out:
 			print(text)
 

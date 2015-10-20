@@ -76,7 +76,10 @@ class Converter:
 				pass  # default template
 			elif template == 'letter':
 				# for named template is necessary to change working directory
-				template = "--template=letter/main.tex"
+				template = "--template=letter/letter.tex"
+				command.append(template)
+			elif template == 'letter2':
+				template = "--template=letter2/all.tex"
 				command.append(template)
 			elif template == 'brochure':
 				raise NotImplementedError
@@ -87,6 +90,9 @@ class Converter:
 
 		return command
 
+	def _get_styles_dir(self):
+		return os.path.join(__dir__, "resource", "styles")
+
 	def convert(self, inputs, template="", output=None, verbosity=True):
 
 		self._prepare_inputs(inputs)
@@ -96,8 +102,7 @@ class Converter:
 
 			old_dir = os.curdir
 			if template:
-				styles_dir = os.path.join(__dir__, 'resource', "styles")
-				os.chdir(styles_dir)
+				os.chdir(self._get_styles_dir())
 
 			subprocess.call(command)
 
@@ -110,7 +115,7 @@ class Converter:
 		except ValueErrorLO:
 			self.convertDocx(inputs)
 
-		# ~/.cabal/bin/pandoc -f markdown -t latex --latex-engine=xelatex --template=template.tex -o text.pdf -V my_var=xedf text.md
+		# ~/.cabal/bin/pandoc -f markdown -t latex --latex-engine=xelatex --template=letter2.tex -o text.pdf -V my_var=xedf text.md
 		#
 
 	def convertDocx(self, inputs, verbosity=True):
