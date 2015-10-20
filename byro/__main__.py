@@ -20,6 +20,7 @@ __dir__ = path.realpath(path.dirname(__file__))
 
 
 class App:
+
 	def __init__(self):
 		self.arg_parser = None
 		self.args = None
@@ -50,8 +51,10 @@ class App:
 
 		p.add('-c', '--config', is_config_file=True, help='config file path')
 		p.add('-g', '--gui', type=bool, help="")
-		p.add('-l', '--locale', help="")
+		p.add('-l', '--locale', help="Locale, for example: cs_CZ, en_US")
 		p.add('-o', '--out', help="Output file name")
+		# TODO: version
+		# TODO: config path
 
 		vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
 		vyc.add('--url', help="Target Redmine url.")
@@ -112,8 +115,16 @@ class App:
 		save()
 
 	def ocr(self):
-		# TODO: lang from locale
-		lang = "ces" # or eng
+		locale = self.args.locale
+		if locale in ('eng', 'ces'):
+			lang = locale
+		elif locale == 'en_US':
+			lang = 'eng'
+		elif locale == 'cs_CZ':
+			lang = 'ces'
+		else:
+			raise Exception("Unknown locale")
+
 		text = ocr_wrapper(self.args.inputs, self.args.out, lang)
 		if not self.args.out:
 			print(text)

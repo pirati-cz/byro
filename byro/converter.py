@@ -115,9 +115,6 @@ class Converter:
 		except ValueErrorLO:
 			self.convertDocx(inputs)
 
-		# ~/.cabal/bin/pandoc -f markdown -t latex --latex-engine=xelatex --template=letter2.tex -o text.pdf -V my_var=xedf text.md
-		#
-
 	def convertDocx(self, inputs, verbosity=True):
 
 		command = ['libreoffice', '--invisible', '--convert-to', 'pdf'] + inputs
