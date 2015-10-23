@@ -4,6 +4,7 @@
 See __init__.py.__doc__
 """
 
+import re
 import sys
 import locale
 import shutil
@@ -13,7 +14,7 @@ from byro.sign import PdfSign
 from byro.converter import Converter
 from byro.configargparse import ByroParse
 from byro.mail import mail_wrapper
-from byro.utils import (ocr as ocr_wrapper, save)
+from byro.utils import (ocr as ocr_wrapper, save as save_wrapper)
 from byro import (__author__)
 
 __dir__ = path.realpath(path.dirname(__file__))
@@ -24,13 +25,15 @@ class App:
 	def __init__(self):
 		self.arg_parser = None
 		self.args = None
-		self.user_confg = path.join(path.expanduser('~'), ".byro.ini")
-		self.default_config = path.join(__dir__, 'resource', 'config-example.ini')
+		self.configs = {
+			'default':  path.join(__dir__, 'resource', 'config-example.ini'),
+			'user':     path.join(path.expanduser('~'), '.byro.ini')
+		}
 
 	def _first_run(self):
-		if not path.exists(self.user_confg):
-			print("First run, create user config: ", self.user_confg)
-			shutil.copy(self.default_config, self.user_confg)
+		if not path.exists(self.configs['user']):
+			print("First run, create user config: ", self.configs['user'])
+			shutil.copy(self.configs['default'], self.configs['user'])
 
 		nautilus_scripts = path.expanduser('~') + "/local/share/nautilus/scripts"
 		if sys.platform == "linux2" and path.exists(nautilus_scripts):
@@ -40,11 +43,11 @@ class App:
 
 	def _parse_args(self):
 
-		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args"]
+		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args", "config"]
 
 		p = ByroParse(
 			subcommands,
-			default_config_files=[self.default_config, self.user_confg],
+			default_config_files=self.configs.values(),
 			description=__doc__,
 			epilog=str(__author__)
 		)
@@ -55,6 +58,9 @@ class App:
 		p.add('-o', '--out', help="Output file name")
 		# TODO: version
 		# TODO: config path
+
+		con = p.add_argument_group('Config', "Show config path and ends.")
+		con.add('-a', '--add', help="Add argument into used config")
 
 		vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
 		vyc.add('--url', help="Target Redmine url.")
@@ -97,6 +103,26 @@ class App:
 		self._first_run()
 		locale.setlocale(locale.LC_ALL, self.args.locale)
 
+	def config(self):
+		if self.args.add:
+			pattern = '([\w-]*)=(\w*)'
+			m = re.match(pattern, self.args.add)
+			if m:
+				g = m.groups()
+				#TODO
+				print('replace', g[0], 'with', g[1])
+				#command = ["re.sub('^# deb', 'deb', line)"]
+				#with open(self.configs['user'], "r") as sources:
+				#	for line in sources.readlines():
+				#		print(line)
+			else:
+				print('Unknown format:', self.args.add)
+		else:
+			print('Configs:')
+			print(self.configs)
+			print('Arguments:')
+			print(self.args)
+
 	def pdf(self):
 		convertor = Converter(self.args.pandoc_bin)
 		convertor.convert(self.args.inputs, self.args.template, self.args.out)
@@ -112,7 +138,7 @@ class App:
 		mail_wrapper(self.args)
 
 	def save(self):
-		save()
+		save_wrapper()
 
 	def ocr(self):
 		locale = self.args.locale
@@ -142,6 +168,8 @@ class App:
 
 		if c == 'args':
 			self.args_test()
+		elif c == "config":
+			self.config()
 		elif c == "pdf":
 			self.pdf()
 		elif c == "ocr":
