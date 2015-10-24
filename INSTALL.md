@@ -2,6 +2,7 @@
 Installation manual for Byro
 ============================
 
+
 Non python dependency
 ---------------------
 
@@ -90,10 +91,21 @@ pip3 uninstall byro
 [rm ~/.byro.ini]
 ```
 
+
 Using
 -----
 
 Everythink is in the help: `byro -h`
+
+
+Creating distribution packages
+-------------------------------
+
+### RPM
+
+```
+./setup.py bdist_rpm
+```
 
 
 [signHP]: http://sourceforge.net/projects/jsignpdf
