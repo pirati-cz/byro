@@ -136,8 +136,8 @@ class App:
 			print(self.args)
 
 	def pdf(self):
-		convertor = Converter(self.args.pandoc_bin)
-		convertor.convert(self.args.inputs, self.args.template, self.args.out)
+		converter = Converter(self.args.pandoc_bin)
+		converter.convert(self.args.inputs, self.args.template, self.args.out)
 
 	def vycetka(self):
 		vycetka_wrapper(self.args)
@@ -149,7 +149,8 @@ class App:
 	def mail(self):
 		mail_wrapper(self.args)
 
-	def save(self):
+	@staticmethod
+	def save():
 		save_wrapper()
 
 	def ocr(self):
