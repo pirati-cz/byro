@@ -102,7 +102,18 @@ class App:
 
 	def _before_run(self):
 		self._first_run()
-		locale.setlocale(locale.LC_ALL, self.args.locale)
+		try:
+			locale.setlocale(locale.LC_ALL, self.args.locale)
+		except locale.Error:
+			# Ubuntu specific error
+			# Issue: https://github.com/pirati-cz/byro/issues/17
+			error_mes = """
+			Váš OS neobsahuje správné locale.
+			Zkuste je vygenerovat příkazem:
+			sudo locale-gen cs_CZ
+			"""
+			print(error_mes, file=sys.stderr)
+			exit()
 
 	def config(self):
 		if self.args.add:
