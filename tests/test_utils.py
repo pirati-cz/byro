@@ -91,26 +91,3 @@ class SplitFilename(unittest.TestCase):
 				res = Utils.split_filename(name)
 				self.assertEqual(res[0], n[0])
 				self.assertEqual(res[1], n[1])
-
-
-def offline():
-	try:
-		response = urlopen('http://74.125.228.100', timeout=1)
-		return False
-	except:
-		return True
-
-
-@unittest.skipIf(offline(), "Internet connection is required for this test case")
-class RedmineOnline(unittest.TestCase):
-
-	def setUp(self):
-		pass
-
-	def test_get_user(self):
-		pass
-
-	def test_get_data(self):
-		pass
-		#rm = Red
-		#data = rm.get_data()
