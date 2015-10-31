@@ -44,10 +44,11 @@ class App:
 	def _parse_args(self):
 
 		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args", "config"]
+		configs = list(self.configs.values())
 
 		p = ByroParse(
 			subcommands,
-			default_config_files=self.configs.values(),
+			default_config_files=configs,
 			description=__doc__,
 			epilog=str(__author__)
 		)
