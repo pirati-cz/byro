@@ -15,7 +15,7 @@ from byro.converter import Converter
 from byro.configargparse import ByroParse
 from byro.mail import mail_wrapper
 from byro.utils import (ocr as ocr_wrapper, save as save_wrapper)
-from byro import (__author__)
+from byro import (__author__, __version__)
 
 __dir__ = path.realpath(path.dirname(__file__))
 
@@ -43,14 +43,14 @@ class App:
 
 	def _parse_args(self):
 
-		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args", "config"]
+		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args", "config", "version"]
 		configs = list(self.configs.values())
 
 		p = ByroParse(
 			subcommands,
 			default_config_files=configs,
 			description=__doc__,
-			epilog=str(__author__)
+			epilog="Version: " + __version__ + ", Authors: " + str(__author__)
 		)
 
 		p.add('-c', '--config', is_config_file=True, help='config file path')
@@ -156,6 +156,10 @@ class App:
 		if not self.args.out:
 			print(text)
 
+	@staticmethod
+	def version():
+		print(__version__)
+
 	def args_test(self):
 		print(self.args)
 
@@ -183,6 +187,8 @@ class App:
 			self.save()
 		elif c == "vycetka":
 			self.vycetka()
+		elif c == "version":
+			self.version()
 		else:
 			self.arg_parser.print_help()
 
