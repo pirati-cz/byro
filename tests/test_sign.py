@@ -7,7 +7,7 @@ key = ""
 
 
 def get_test_files_dir():
-        return os.path.realpath(os.path.dirname(__file__)) + "/data/"
+    return os.path.realpath(os.path.dirname(__file__)) + "/data/"
 
 
 def test_dependency():

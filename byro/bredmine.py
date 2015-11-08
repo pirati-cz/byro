@@ -22,7 +22,7 @@ class BRedmine:
         self.interval = Utils.define_interval(month)
         self.redmine = None
         try:
-            self.redmine = Redmine(self.baseUrl)
+            self.redmine = Redmine(self.baseUrl, requests={'verify': False})
         except Exception as e:
             print("Nelze se připojit k Redmine :(: %s" % e )
             exit()

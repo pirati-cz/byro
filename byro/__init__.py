@@ -15,7 +15,7 @@ From open source components create tool for every office work:
 Basically it is only a wrapper over some handy open source tools like Pandoc, Tesseract, git, Redmine API and LaTeX.
 """
 
-__version__ = "0.5.5"
+__version__ = "0.5.11"
 __status__ = "Alpha"
 __license__ = "Affero GNU-GPL v3"
 __author__ = "Ondřej Profant, Jakub Michálek"

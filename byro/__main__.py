@@ -4,6 +4,7 @@
 See __init__.py.__doc__
 """
 
+import re
 import sys
 import locale
 import shutil
@@ -13,23 +14,26 @@ from byro.sign import PdfSign
 from byro.converter import Converter
 from byro.configargparse import ByroParse
 from byro.mail import mail_wrapper
-from byro.utils import (ocr, save)
-from byro import (__author__)
+from byro.utils import (ocr as ocr_wrapper, save as save_wrapper)
+from byro import (__author__, __version__)
 
 __dir__ = path.realpath(path.dirname(__file__))
 
 
 class App:
+
 	def __init__(self):
 		self.arg_parser = None
 		self.args = None
-		self.user_confg = path.join(path.expanduser('~'), ".byro.ini")
-		self.default_config = path.join(__dir__, 'resource', 'config-example.ini')
+		self.configs = {
+			'default':  path.join(__dir__, 'resource', 'config-example.ini'),
+			'user':     path.join(path.expanduser('~'), '.byro.ini')
+		}
 
 	def _first_run(self):
-		if not path.exists(self.user_confg):
-			print("First run, create user config: ", self.user_confg)
-			shutil.copy(self.default_config, self.user_confg)
+		if not path.exists(self.configs['user']):
+			print("First run, create user config: ", self.configs['user'])
+			shutil.copy(self.configs['default'], self.configs['user'])
 
 		nautilus_scripts = path.expanduser('~') + "/local/share/nautilus/scripts"
 		if sys.platform == "linux2" and path.exists(nautilus_scripts):
@@ -39,19 +43,25 @@ class App:
 
 	def _parse_args(self):
 
-		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args"]
+		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args", "config", "version"]
+		configs = list(self.configs.values())
 
 		p = ByroParse(
 			subcommands,
-			default_config_files=[self.default_config, self.user_confg],
+			default_config_files=configs,
 			description=__doc__,
-			epilog=str(__author__)
+			epilog="Version: " + __version__ + ", Authors: " + str(__author__)
 		)
 
 		p.add('-c', '--config', is_config_file=True, help='config file path')
 		p.add('-g', '--gui', type=bool, help="")
-		p.add('-l', '--locale', help="")
+		p.add('-l', '--locale', help="Locale, for example: cs_CZ, en_US")
 		p.add('-o', '--out', help="Output file name")
+		# TODO: version
+		# TODO: config path
+
+		con = p.add_argument_group('Config', "Show config path and ends.")
+		con.add('-a', '--add', help="Add argument into used config")
 
 		vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
 		vyc.add('--url', help="Target Redmine url.")
@@ -80,7 +90,7 @@ class App:
 		mail.add("--server", help="Email server")
 		mail.add("--port", help="Port")
 
-		ocr = p.add_argument_group("ocr", "OCR images: byro -o <text>.txt file1.jpg file2.jpg")
+		ocr = p.add_argument_group("Ocr", "OCR images: byro -o <text>.txt file1.jpg file2.jpg")
 
 		ds = p.add_argument_group('Ds')
 		ds.add('--ds-id', help="")
@@ -92,11 +102,42 @@ class App:
 
 	def _before_run(self):
 		self._first_run()
-		locale.setlocale(locale.LC_ALL, self.args.locale)
+		try:
+			locale.setlocale(locale.LC_ALL, self.args.locale)
+		except locale.Error:
+			# Ubuntu specific error
+			# Issue: https://github.com/pirati-cz/byro/issues/17
+			error_mes = """
+			Váš OS neobsahuje správné locale.
+			Zkuste je vygenerovat příkazem:
+			sudo locale-gen cs_CZ
+			"""
+			print(error_mes, file=sys.stderr)
+			exit()
+
+	def config(self):
+		if self.args.add:
+			pattern = '([\w-]*)=(\w*)'
+			m = re.match(pattern, self.args.add)
+			if m:
+				g = m.groups()
+				#TODO
+				print('replace', g[0], 'with', g[1])
+				#command = ["re.sub('^# deb', 'deb', line)"]
+				#with open(self.configs['user'], "r") as sources:
+				#	for line in sources.readlines():
+				#		print(line)
+			else:
+				print('Unknown format:', self.args.add)
+		else:
+			print('Configs:')
+			print(self.configs)
+			print('Arguments:')
+			print(self.args)
 
 	def pdf(self):
-		convertor = Converter(self.args.pandoc_bin)
-		convertor.convert(self.args.inputs, self.args.template, self.args.out)
+		converter = Converter(self.args.pandoc_bin)
+		converter.convert(self.args.inputs, self.args.template, self.args.out)
 
 	def vycetka(self):
 		vycetka_wrapper(self.args)
@@ -108,13 +149,28 @@ class App:
 	def mail(self):
 		mail_wrapper(self.args)
 
-	def save(self):
-		save()
+	@staticmethod
+	def save():
+		save_wrapper()
 
 	def ocr(self):
-		text=ocr(self.args.inputs, self.args.out)
+		locale = self.args.locale
+		if locale in ('eng', 'ces'):
+			lang = locale
+		elif locale == 'en_US':
+			lang = 'eng'
+		elif locale == 'cs_CZ':
+			lang = 'ces'
+		else:
+			raise Exception("Unknown locale")
+
+		text = ocr_wrapper(self.args.inputs, self.args.out, lang)
 		if not self.args.out:
 			print(text)
+
+	@staticmethod
+	def version():
+		print(__version__)
 
 	def args_test(self):
 		print(self.args)
@@ -129,6 +185,8 @@ class App:
 
 		if c == 'args':
 			self.args_test()
+		elif c == "config":
+			self.config()
 		elif c == "pdf":
 			self.pdf()
 		elif c == "ocr":
@@ -141,6 +199,8 @@ class App:
 			self.save()
 		elif c == "vycetka":
 			self.vycetka()
+		elif c == "version":
+			self.version()
 		else:
 			self.arg_parser.print_help()
 
