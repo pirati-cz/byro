@@ -10,19 +10,22 @@ from byro.utils import Utils
 
 
 class BRedmine:
-    def __init__(self, user, baseUrl, projectName, month='last'):
+    def __init__(self, user, baseUrl, projectName, **kwargs):
         """
         :param user: user in redmine
         :param baseUrl: base url of redmine instance, like http://redmine.example.com
         :type baseUrl: string
         :param projectName: name of project (multiple project are not allowed)
-        :param month:
+        :param month: str default is last
+        :param ssl: bool verify ssl certificate?
         """
+        month = kwargs.get('month', 'last')
+        ssl_verify = kwargs.get('ssl', False)
         self.baseUrl = baseUrl
         self.interval = Utils.define_interval(month)
         self.redmine = None
         try:
-            self.redmine = Redmine(self.baseUrl, requests={'verify': False})
+            self.redmine = Redmine(self.baseUrl, requests={'verify': ssl_verify})
         except Exception as e:
             print("Nelze se připojit k Redmine :(: %s" % e )
             exit()
