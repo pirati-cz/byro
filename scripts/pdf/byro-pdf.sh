@@ -97,16 +97,28 @@ function md2pdf() {
 
   # we extract the form from the yaml front matter
   form="files/styles/"$(awk -F ":[ ]+" '/style/ {print $2}' < "$1")"/main.tex";
-
+    
   if [ -s "$form" ]; then
     template=$form;
   fi;
+  echo "Selected template "$template;
+  
+  vlna $1 > .vlnares.md
   
   $pandocExe \
     --template="${template}" \
     --latex-engine=xelatex \
     -o "$2" \
-    "$1";
+    ".vlnares.md";
+}
+
+###############################
+# Vlna (insert nonbreakable spaces)
+###############################
+
+function vlna() {
+  REGEX="s/(^|\(|\s| |„|“)([aikosuvz])\s/\1\2 /gi"; # mezery jsou nedělitelné
+  sed -r -e "$REGEX" -e "$REGEX" $1;
 }
 
 ###############################

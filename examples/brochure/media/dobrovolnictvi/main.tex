@@ -1,0 +1,17 @@
+\documentclass[11pt,a4paper,czech]{article}
+\input{files/styles/header.tex}
+\input{files/styles/$styl$/template.tex}
+
+$if(vyrizuje.ds)$ \def \myds {$vyrizuje.ds$} $endif$
+$if(vyrizuje.telefon)$ \def \myphone {$vyrizuje.telefon$} $endif$
+$if(vyrizuje.mail)$ \def \mymail {$vyrizuje.mail$} $endif$
+
+\begin{document}
+
+\title{$vec$}
+
+$body$
+
+\signature{$for(podpis)$$podpis$ \\$endfor$}
+
+\end{document}

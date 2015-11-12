@@ -1,0 +1,42 @@
+% nastavení fontů
+\setmainfont[
+    Path = files/fonts/LiberationSans/,
+    Ligatures=TeX,
+    UprightFont = *-Regular,
+    BoldFont=*-Bold.ttf,
+    ItalicFont=*-Italic.ttf,
+    BoldItalicFont=*-BoldItalic,
+    Scale=1.0]{LiberationSans}
+\setmonofont[
+    Path = files/fonts/LiberationSans/,
+    Ligatures=TeX,
+    UprightFont = *-Regular,
+    BoldFont=*-Bold.ttf,
+    ItalicFont=*-Italic.ttf,
+    BoldItalicFont=*-BoldItalic]{LiberationSans}
+
+% Pozadí stránky
+\usepackage{fancyhdr}
+\fancypagestyle{mypagestyle}{%
+  \fancyhf{}% Clear header/footer
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\small Mgr. Bc. Jakub Michálek $\bullet$ trvale bytem Zenklova 941/193, Praha 8 $\bullet$ IČO 03667081 \\
+Tel. {\myphone} $\bullet$ E-mail \href{mailto:\mymail}{\mymail} $\bullet$ Datová schránka \uline{\myds} }% Your logo/image
+}
+
+\fancypagestyle{empty}{%
+
+  \fancyhf{}% Clear header/footer
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyfoot[C]{\thepage}% Your logo/image
+}
+\pagestyle{empty}
+
+% první stránka obsahuje pozadí
+\AtBeginDocument
+{
+   \thispagestyle{mypagestyle}
+}
+
+\usepackage{enumitem}
+\renewcommand{\labelitemi}{$-$}
