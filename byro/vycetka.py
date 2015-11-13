@@ -8,7 +8,6 @@ from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from byro.bredmine import BRedmine
 
 
-
 class Output:
 	def __init__(self, data):
 		self.data = data
@@ -88,7 +87,6 @@ class DocX(Output):
 
 		print("Výčetka vygenerována do souboru %s" % self.filename)
 
-
 	def _createTable(self, document):
 		"""
 		:param document: document main class
@@ -120,7 +118,6 @@ class DocX(Output):
 		r.cells[3].text = str(self.data.totalSum)
 		r.cells[4].text = str(self.data.totalSum)
 
-
 	def _createTableHeading(self, document):
 		table = document.add_table(2, 6)
 		table.style = self.table_style
@@ -144,7 +141,7 @@ class DocX(Output):
 
 
 def vycetka_wrapper(args):
-	redmine = BRedmine(args.user, args.url, args.project, args.month)
+	redmine = BRedmine(args.user, args.url, args.project, month=args.month)
 	data = redmine.get_data()
 	# data.export_to_bin_file("data-6-OP.p")
 	# cmd = Cmd(data)
