@@ -22,13 +22,15 @@ __dir__ = path.realpath(path.dirname(__file__))
 
 class App:
 
-	def __init__(self):
+	def __init__(self, arguments):
+		self.raw_argv = arguments
 		self.arg_parser = None
 		self.args = None
 		self.configs = {
 			'default':  path.join(__dir__, 'resource', 'config-example.ini'),
 			'user':     path.join(path.expanduser('~'), '.byro.ini')
 		}
+		self._parse_args()
 
 	def _first_run(self):
 		if not path.exists(self.configs['user']):
@@ -43,7 +45,7 @@ class App:
 
 	def _parse_args(self):
 
-		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "args", "config", "version"]
+		subcommands = ["pdf", "sign", "vycetka", "save", "mail", "ds", "ocr", "arg", "config", "version"]
 		configs = list(self.configs.values())
 
 		p = ByroParse(
@@ -81,6 +83,8 @@ class App:
 		pdf.add('--pandoc-bin', help="Path to pandoc binary.")
 		pdf.add('--tex-bin', help="")
 		pdf.add('-t', '--template', help="Path to XeLaTeX template.")
+		# TODO
+		pdf.add('-D', '--print-default-template', help="Print default template.")
 
 		mail = p.add_argument_group('Mail', "Send mass mails, body is markdown file, list of recipients is file")
 		mail.add("-r", "--recipients", help="Email, or path to text file with recipients divided by newline.")
@@ -97,7 +101,7 @@ class App:
 		p.add_argument('inputs', metavar='input files', nargs='*', help='Input files')
 
 		self.arg_parser = p
-		self.args = p.parse_args()
+		self.args = p.parse_args(self.raw_argv)
 
 	def _before_run(self):
 		self._first_run()
@@ -107,9 +111,9 @@ class App:
 			# Ubuntu specific error
 			# Issue: https://github.com/pirati-cz/byro/issues/17
 			error_mes = """
-			Váš OS neobsahuje správné locale.
-			Zkuste je vygenerovat příkaz:
-			sudo locale-gen %s
+Váš OS neobsahuje správné locale.
+Zkuste je vygenerovat příkaz:
+sudo locale-gen %s
 			""" % self.args.locale
 			print(error_mes, file=sys.stderr)
 			exit()
@@ -176,13 +180,11 @@ class App:
 
 	def main(self):
 
-		self._parse_args()
-
 		self._before_run()
 
 		c = self.args.command
 
-		if c == 'args':
+		if c == 'arg':
 			self.args_test()
 		elif c == "config":
 			self.config()
@@ -205,7 +207,9 @@ class App:
 
 
 def main():
-	return App().main()
+	arguments = sys.argv[1:]
+	app = App(arguments)
+	return app.main()
 
 
 if __name__ == "__main__":

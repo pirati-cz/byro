@@ -25,20 +25,19 @@ class ByroParse(configargparse.ArgParser):
         super(ByroParse, self).__init__(*args, **kwargs)
         self.usage = "%(prog)s [command] [option]"
 
-    def parse_args(self):
-        if len(sys.argv) < 2:
+    def parse_args(self, argv):
+        if len(argv) < 2:
             self.print_help()
             sys.exit()
 
-        cmd = sys.argv[1]
-        args = sys.argv[2:]
+        cmd = argv[0]
 
         if cmd not in self.commands + ["-h", "-v", "--version", '--help']:
             print(cmd)
             self.print_help()
             sys.exit()
 
-        parsed = super(ByroParse, self).parse_args(args)
+        parsed = super(ByroParse, self).parse_args(argv[1:])
 
         parsed.command = cmd
 
