@@ -57,7 +57,6 @@ class App:
 		p.add('-g', '--gui', type=bool, help="")
 		p.add('-l', '--locale', help="Locale, for example: cs_CZ, en_US")
 		p.add('-o', '--out', help="Output file name")
-		# TODO: version
 		# TODO: config path
 
 		con = p.add_argument_group('Config', "Show config path and ends.")
@@ -109,9 +108,9 @@ class App:
 			# Issue: https://github.com/pirati-cz/byro/issues/17
 			error_mes = """
 			Váš OS neobsahuje správné locale.
-			Zkuste je vygenerovat příkazem:
-			sudo locale-gen cs_CZ
-			"""
+			Zkuste je vygenerovat příkaz:
+			sudo locale-gen %s
+			""" % self.args.locale
 			print(error_mes, file=sys.stderr)
 			exit()
 

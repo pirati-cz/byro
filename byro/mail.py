@@ -9,12 +9,14 @@ from email.message import EmailMessage
 
 
 def chunks(l, n):
-	"""Yield successive n-sized chunks from l."""
+	""" Yield successive n-sized chunks from l. """
 	for i in range(0, len(l), n):
 		yield l[i:i + n]
 
 
 class Mail:
+	""" Wraps default python email functions  """
+
 	def __init__(self, login, frm, **kwargs):
 		self._limit = kwargs.get('limit', 35)
 		self._delay = kwargs.get('delay', 35)
