@@ -122,3 +122,7 @@ class Converter:
 
 		if verbosity:
 			print("%s byl konvertován do PDF." % str(inputs))
+
+
+if __name__ == "__main__":
+	pass

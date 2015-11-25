@@ -149,3 +149,7 @@ def vycetka_wrapper(args):
 	docx.show()
 
 	# cmd.show()
+
+
+if __name__ == "__main__":
+	pass

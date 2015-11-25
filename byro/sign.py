@@ -72,3 +72,7 @@ class PdfSign:
 				print(e)
 
 		del (passwd, command)
+
+
+if __name__ == "__main__":
+	pass

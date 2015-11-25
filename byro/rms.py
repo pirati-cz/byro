@@ -68,3 +68,7 @@ class RMS:
 
 	def search_in_file(self):
 		pass
+
+
+if __name__ == "__main__":
+	pass
