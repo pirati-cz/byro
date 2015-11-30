@@ -53,6 +53,13 @@ sudo pip3 install git+https://github.com/pirati-cz/byro
 
 Then just run `byro`!
 
+### Reinstall
+
+```bash
+sudo pip3 uninstall byro
+sudo pip3 install git+https://github.com/pirati-cz/byro
+```
+
 ### Config file
 
 Important parameters are in config file: `byro/resource/config.ini`.
