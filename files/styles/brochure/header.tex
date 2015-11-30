@@ -39,7 +39,33 @@ Transparentní účet 2100048174/2010}% Your logo/image
 {
    \thispagestyle{mypagestyle}
    \ThisULCornerWallPaper{1}{files/styles/letter/pozadi.pdf}
+\newgeometry{margin=2.5cm,footskip=1cm,bottom=4cm,top=7cm}
 }
+
+\newcommand\mytoc{\clearpage\restoregeometry\tableofcontents}
+
+
+% some adjustments for toc
+\setcounter{tocdepth}{1}
+\usepackage{tocloft}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% font declaration and title settings
+\newfontface\headingfont[
+    Path = files/fonts/MPlus/]{mplus-1p-black.ttf}
+\newcommand{\sectionbreak}{\clearpage}
+\titleformat*{\section}{\LARGE\headingfont}
+%\renewcommand{\maketitlehooka}{\headingfont}
+
+%obrázky
+\usepackage{letltxmacro}
+\usepackage[export]{adjustbox}
+%\LetLtxMacro{\OldIncludegraphics}{\includegraphics}
+%\renewcommand{\includegraphics}[2][]{\OldIncludegraphics[width=0.7\textwidth,left, #1]{#2}}
+\usepackage[labelformat=empty, textformat=simple, singlelinecheck=false, font=small, justification=centering, textfont={color=gray}]{caption}
+
+\usepackage{float}
+\floatplacement{figure}{H}
 
 \usepackage{enumitem}
 \renewcommand{\labelitemi}{$-$}
