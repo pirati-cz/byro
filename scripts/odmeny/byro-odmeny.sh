@@ -7,6 +7,8 @@
 # Prerequisites:
 # Install: sudo pip3 install csvtomd - not used any more
 # sudo apt-get install gnuplot
+# sudo apt-get install gawk
+# sudo apt-get install python3-pip
 #
 # use as
 # 1) odmeny.sh -n -u 3 -t 2015-08
@@ -107,6 +109,8 @@ fi
 ################################################
 
 startInfo
+
+checkPrerequisites
 
 if [ "$ALL" == "YES" ] && [ "$NEW" == "YES" ]; then
   echo "You have requested to create reports for all users."

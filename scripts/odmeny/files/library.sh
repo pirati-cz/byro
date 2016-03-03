@@ -21,6 +21,19 @@ startInfo() {
   printf "\n${color}byro odmeny${nocolor}\n-------------\n \n"
 }
 
+checkPrerequisites() {
+
+  # check if the required packages are installed, if not, install it
+
+packages=('gnuplot' 'gawk' 'python3-pip')
+
+echo -e "\n${color}Installation${nocolor}
+The packages necessary packages may be installed..."
+sudo apt-get install "${packages[@]}"
+sudo pip3 install csvtomd
+echo -e "\n"
+}
+
 readPayrol() {
 
   # for given csv file with payrol creates array structure with values
@@ -549,6 +562,7 @@ prependArray() {
 
 concatArray() {
   local IFS='&'
+  
   echo "${myarray[*]}"
 }
 
