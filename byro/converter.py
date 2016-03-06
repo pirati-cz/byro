@@ -11,7 +11,7 @@ __dir__ = os.path.realpath(os.path.dirname(__file__))
 class ValueErrorLO(ValueError):
 	"""
 	File extensions that cannot be converted by Pandoc,
-	byt LibreOffice can do the job.
+	but LibreOffice can do the job.
 	"""
 	pass
 
