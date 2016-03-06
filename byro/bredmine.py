@@ -6,6 +6,7 @@ __all__ = ["BRedmine", "RedmineData"]
 import re
 import sys
 import pickle
+import datetime
 from redmine import Redmine
 from byro.utils import Utils
 
@@ -30,8 +31,9 @@ class BRedmine:
 		"""
 		month = kwargs.get('month', 'last')
 		ssl_verify = kwargs.get('ssl', False)
+		year = kwargs.get('ssl', datetime.date.today().year)
 		self.baseUrl = baseUrl
-		self.interval = Utils.define_interval(month)
+		self.interval = Utils.define_interval(month, year=year)
 		self.redmine = None
 		try:
 			self.redmine = Redmine(self.baseUrl, requests={'verify': ssl_verify})

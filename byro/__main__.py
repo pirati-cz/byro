@@ -139,8 +139,7 @@ sudo locale-gen %s
 			print(self.args)
 
 	def pdf(self):
-		converter = Converter(self.args.pandoc_bin)
-		converter.convert(self.args.inputs, self.args.template, self.args.out)
+		converter_wrapper(self.args)
 
 	def vycetka(self):
 		vycetka_wrapper(self.args)

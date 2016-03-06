@@ -90,8 +90,13 @@ class Converter:
 
 		return command
 
-	def _get_styles_dir(self):
+	@staticmethod
+	def _get_styles_dir():
 		return os.path.join(__dir__, "resource", "styles")
+
+	@staticmethod
+	def print_default_template(template):
+		pass
 
 	def convert(self, inputs, template="", output=None, verbosity=True):
 
@@ -123,6 +128,10 @@ class Converter:
 		if verbosity:
 			print("%s byl konvertován do PDF." % str(inputs))
 
+
+	def converter_wrapper(args):
+		converter = Converter(args.pandoc_bin)
+		converter.convert(args.inputs, args.template, args.out)
 
 if __name__ == "__main__":
 	pass

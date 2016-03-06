@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- encoding: utf-8 -*-
 
 import unittest
 from os.path import join, realpath, dirname
@@ -33,10 +34,10 @@ class Body(unittest.TestCase):
         filename = join(path, "simple-body.md")
         returned = Mail._read_markdown_body(filename)
 
-        expected = "Dobrý den,\n\ndovoluji se Vás oslovit ve věci mimořádné důležitosti."
+        expected = 'Dobrý den,\n\ndovoluji se Vás oslovit ve věci mimořádné důležitosti.'
         self.assertEqual(returned['raw'], expected)
 
-        expected = "<p>Dobrý den,</p>\n<p>dovoluji se Vás oslovit ve věci mimořádné důležitosti.</p>"
+        expected = '<p>Dobrý den,</p>\n<p>dovoluji se Vás oslovit ve věci mimořádné důležitosti.</p>'
         self.assertEqual(returned['html'], expected)
 
         self.assertEqual(returned['meta'], {})

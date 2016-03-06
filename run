@@ -5,8 +5,8 @@ Clever assistant for each bureaucrat.
 """
 
 from sys import exit
-from byro.__main__ import App
+from byro.__main__ import main
 
 
 if __name__ == "__main__":
-    exit(App().main())
+    exit(main())
