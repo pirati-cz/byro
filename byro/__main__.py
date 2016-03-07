@@ -11,7 +11,7 @@ import shutil
 from os import path
 from byro.vycetka import vycetka_wrapper
 from byro.sign import PdfSign
-from byro.converter import Converter
+from byro.converter import converter_wrapper
 from byro.configargparse import ByroParse
 from byro.mail import mail_wrapper
 from byro.utils import (ocr as ocr_wrapper, save as save_wrapper)

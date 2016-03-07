@@ -129,9 +129,10 @@ class Converter:
 			print("%s byl konvertován do PDF." % str(inputs))
 
 
-	def converter_wrapper(args):
-		converter = Converter(args.pandoc_bin)
-		converter.convert(args.inputs, args.template, args.out)
+def converter_wrapper(args):
+	converter = Converter(args.pandoc_bin)
+	converter.convert(args.inputs, args.template, args.out)
+
 
 if __name__ == "__main__":
 	pass
