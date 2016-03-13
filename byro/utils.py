@@ -65,7 +65,7 @@ class Utils:
 		:type comment: string
 		:return: (string, string)
 		"""
-		pattern = '\b*(\d\d:\d\d-\d\d:\d\d)[ *]+(.*)'
+		pattern = '\b*(\d*\d:\d\d-\d*\d:\d\d)[ *]+(.*)'
 		try:
 			res = re.search(pattern, comment).groups()
 		except:

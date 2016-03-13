@@ -76,6 +76,11 @@ class PickTime(unittest.TestCase):
 		expected = ("?", self.rawtext)
 		self.assertEqual(returned, expected)
 
+	def test_pict_time_1_digit(self):
+		returned = Utils.pick_time("9:00-10:00 text")
+		expected = ("9:00-10:00", "text")
+		self.assertEqual(returned, expected)
+
 
 class SplitFilename(unittest.TestCase):
 
