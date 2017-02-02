@@ -31,7 +31,7 @@ class BRedmine:
 		"""
 		month = kwargs.get('month', 'last')
 		ssl_verify = kwargs.get('ssl', False)
-		year = kwargs.get('year', datetime.date.today().year)
+		year = int(kwargs.get('year', datetime.date.today().year))
 		self.refundace = kwargs.get('refundace', True)
 		self.baseUrl = baseUrl
 		self.interval = Utils.define_interval(month, year=year)
