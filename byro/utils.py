@@ -6,6 +6,7 @@ from dateutil.relativedelta import relativedelta
 
 
 class Utils:
+
 	@staticmethod
 	def is_int(x):
 		if isinstance(x, int):

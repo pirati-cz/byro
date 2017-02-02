@@ -8,6 +8,7 @@ import re
 import sys
 import locale
 import shutil
+import datetime
 from os import path
 from byro.vycetka import vycetka_wrapper
 from byro.sign import PdfSign
@@ -67,7 +68,8 @@ class App:
 		vyc = p.add_argument_group('Vycetka', "Generates \"vycetka\" for Prague City Hall.")
 		vyc.add('--url', help="Target Redmine url.")
 		vyc.add('-p', '--project', help="Redmine project name.")
-		vyc.add('-y', '--year',  help="Values: this, last, 2014, 2015, ...")
+		actual_year = datetime.date.today().year
+		vyc.add('-y', '--year',  default=actual_year, help="Values: this, last, 2014, 2015, ...")
 		vyc.add('-m', '--month', help="Values: this, last, leden, únor, ..., prosinec, 1, ..., 12. Determinate by localization.")
 		vyc.add('-u', '--user',  help="Redmine user nickname or id.")
 

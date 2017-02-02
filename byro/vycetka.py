@@ -141,7 +141,7 @@ class DocX(Output):
 
 
 def vycetka_wrapper(args):
-	redmine = BRedmine(args.user, args.url, args.project, month=args.month)
+	redmine = BRedmine(args.user, args.url, args.project, month=args.month, year=args.year, ssl=True)
 	data = redmine.get_data()
 	# data.export_to_bin_file("data-6-OP.p")
 	# cmd = Cmd(data)
