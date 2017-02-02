@@ -31,7 +31,8 @@ class BRedmine:
 		"""
 		month = kwargs.get('month', 'last')
 		ssl_verify = kwargs.get('ssl', False)
-		year = kwargs.get('ssl', datetime.date.today().year)
+		year = kwargs.get('year', datetime.date.today().year)
+		self.refundace = kwargs.get('refundace', True)
 		self.baseUrl = baseUrl
 		self.interval = Utils.define_interval(month, year=year)
 		self.redmine = None
@@ -82,9 +83,7 @@ class RedmineData:
 
 	def __init__(self, data, otherInfo):
 		# prepare types of refundace
-		refundace = {record.custom_fields[0].value for record in data if
-						  record.custom_fields[0].name == 'Refundace' and record.custom_fields[0].value != ''}
-
+		refundace = {record.custom_fields[0].value for record in data if record.custom_fields[0].name == 'Refundace' and record.custom_fields[0].value != ''}
 		if len(refundace) == 0:
 			raise NoRefundanceField('Custom field [0] is not "Refundace"')
 
@@ -94,7 +93,11 @@ class RedmineData:
 		pattern = '([a-zA-Z]{1,2}\)) .*'
 
 		for ref in refundace:
-			l = re.search(pattern, ref).groups()[0]
+			try:
+				l = re.search(pattern, ref).groups()[0]
+			except AttributeError as e:
+				print(ref)
+				exit()
 			self.refunds[l] = {'fullname': ref}
 			self.refunds[l]['data'] = [ record for record in data if record.custom_fields[0].value == ref ]
 			self.refunds[l]['sum'] = sum(list(map(hours, self.refunds[l]['data'])))

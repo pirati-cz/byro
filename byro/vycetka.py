@@ -2,7 +2,9 @@
 # -*- encoding: utf-8 -*-
 
 import datetime
+from collections import defaultdict
 from .bredmine import Utils
+from pprint import pprint
 from docx import Document
 from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
 from byro.bredmine import BRedmine
@@ -13,7 +15,7 @@ class Output:
 		self.data = data
 
 	def show(self):
-		pass
+		raise NotImplementedError
 
 
 class Cmd(Output):
