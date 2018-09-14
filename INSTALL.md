@@ -8,7 +8,7 @@ Non python dependency
 
 Package from repository in most common Linux distributions.
 
-### Fedora 22
+### Fedora 28
 
 ```bash
 sudo dnf install gcc python3 python3-pip git tesseract tesseract-langpack-ces poppler-utils \
@@ -30,7 +30,7 @@ texlive texlive-lang-czechslovak texlive-xetex texlive-latex-extra gnuplot
 
 ### Other OS and other distribution
 
-App is writen in [Python 3][] and using multiplatform technology 
+App is writen in [Python 3][] and using multiplatform technology
 ([XeLaTeX][], [Pandoc][], [Tesseract][]).
 It should be possible to port to other os and other distribution.
 Feel free to send pull request with manual for other OS.
@@ -48,7 +48,7 @@ Install
 Once you have all OS dependencies installed, you can run following command:
 
 ```bash
-sudo pip3 install git+https://github.com/pirati-cz/byro 
+sudo pip3 install git+https://github.com/pirati-cz/byro
 ```
 
 Then just run `byro`!
@@ -83,7 +83,7 @@ For more details add `-v`.
 
 ### Update
 
-Update already installed instance: 
+Update already installed instance:
 
 ```bash
 pip3 install --upgrade byro
@@ -121,4 +121,3 @@ Creating distribution packages
 [XeLaTeX]: http://www.latex-project.org
 [Pandoc]: http://pandoc.org
 [Tesseract]: https://github.com/tesseract-ocr/tesseract
-

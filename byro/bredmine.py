@@ -7,7 +7,7 @@ import re
 import sys
 import pickle
 import datetime
-from redmine import Redmine
+from redminelib import Redmine
 from byro.utils import Utils
 
 
