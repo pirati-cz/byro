@@ -23,7 +23,7 @@ class ValueErrorPdf(ValueError):
 class Converter:
 	def __init__(self, bin):
 		self.bin = bin
-		self.params = ["--smart"]
+		self.params = []
 		self.check_dependency()
 
 	def check_dependency(self):
@@ -69,7 +69,7 @@ class Converter:
 					["-f", "markdown",
 					"-t", "latex",
 					"-o", output,
-					"--latex-engine=xelatex"]
+					"--pdf-engine=xelatex"]
 
 		if template:
 			if template == 'none':

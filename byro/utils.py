@@ -18,7 +18,7 @@ class Utils:
 			return False
 
 	@staticmethod
-	def define_interval(month='last', year=2015):
+	def define_interval(month='last', year=2018):
 		"""
 		:param month:
 		:type month: string

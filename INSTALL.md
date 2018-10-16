@@ -13,7 +13,7 @@ Package from repository in most common Linux distributions.
 ```bash
 sudo dnf install gcc python3 python3-pip git tesseract tesseract-langpack-ces poppler-utils \
 texlive texlive-collection-langczechslovak texlive-collection-mathextra texlive-mathspec texlive-euenc \
-texlive-xetex texlive-xetex-def texlive-xltxtra \
+texlive-xetex texlive-xetex-def texlive-xltxtra texlive-tcolorbox texlive-datetime2-czech\
 pandoc libreoffice gnuplot
 ```
 (~ 212 MB download, ~ 514 MB installed)
