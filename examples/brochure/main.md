@@ -41,7 +41,7 @@ Každá skupina lidí potřebuje místo, kde komunikuje. Pro Piráty je tímto m
 * **Fórum** krajského sdružení Praha je místem pro společnou tvorbu, diskusi a domlouvání se s ostatními Piráty. Najdeš ho na adrese <http://forum.pirati.cz>.
 * **Redmine** je systém na organizaci dobrovolníků, kde najdete volné úkoly, jak pomoci našemu společnému úsilí. Najdeš ho na adrese <http://redmine.pirati.cz/projects/praha>.
 
-Samozřejmě se scházíme i mimo klávesnici. Každý příznivec Pirátů by měl trefit do Pirátského centra (Řehořova 19, Žižkov, 7 minut chůze z Hlavního nádraží), kde se konají veřejné akce
+Samozřejmě se scházíme i mimo klávesnici. Každý příznivec Pirátů by měl trefit do Pirátského centra (Na Moráni 3, Praha 2), kde se konají veřejné akce
 
 * **Na pivo s pražskými zastupiteli** – od 18:00 – každé první úterý v měsíci se schází celý zastupitelský klub, aby v pohodě u piva diskutoval o věcech, se kterými přijdete, anebo které jsou zrovna aktuální. Ideální prostředí pro seznámení. 
 * **Zastupitelský úterek** – 18:00-19:00 – všechny úterky, kdy není jiná akce, se koná zastupitelské úterý, na kterém některých z Pirátských zastupitelů nebo hostů mluví o zajímavém tématu (pozvánky jsou na facebooku pražských Pirátů a v kalendáři na webu pražských Pirátů).
