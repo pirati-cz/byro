@@ -48,7 +48,7 @@ Používání
 ### Klasická pracovní metoda: 
 
 * upravím soubor `main.md` do potřebné podoby a přílohy umístím do složky `attachments`, 
-* spustím příkaz `byro pdf`, abych zkontroloval, jak vypadá písemnost ve formátu PDF, a následně 
+* spustím příkaz `byro pdf main.md`, abych zkontroloval, jak vypadá písemnost ve formátu PDF, a následně 
 * spustím příkaz `byro full`, který obstará celý proces včetně odeslání do datové schránky a uložení poznámky do redmine.
 
 Program se používá podobně jako `git` zadáním hlavního příkazu `byro` a některého z následujících doprovodných příkazů: 
